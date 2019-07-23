@@ -6,7 +6,7 @@
 
 <ion-content>
 
-  <section lines="none" *ngFor="let inversion of chordDb[instrument][tuning][note][type] | keyvalue">
+  <section lines="none" *ngFor="let inversion of chordDbFrag | keyvalue">
     <h2> {{ inversion.key }} </h2>
 
     <div class="string string{{ instString.key }}" *ngFor="let instString of inversion.value">

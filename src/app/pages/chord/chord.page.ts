@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivationEnd } from '@angular/router';
 
 import chordDb from '../../../chords.json';
+import instrumentTunings from '../../../instrument-tuning.json';
 
 @Component({
   selector: 'app-chord',
@@ -9,30 +10,42 @@ import chordDb from '../../../chords.json';
   styleUrls: ['./chord.page.scss'],
 })
 export class ChordPage implements OnInit {
-  chordDb;
-  instrument;
-  tuning;
-  note;
-  type;
+  chordDbFrag;
+  numberOfStrings;
   chordInversions = {};
-  strings = [];
 
   constructor(
     private activatedRoute: ActivatedRoute
   ) {
-    this.chordDb = chordDb;
+    const instrument = this.activatedRoute.snapshot.paramMap.get('instrument');
+    const tuning = this.activatedRoute.snapshot.paramMap.get('tuning');
+    const note = this.activatedRoute.snapshot.paramMap.get('note');
+    const type = this.activatedRoute.snapshot.paramMap.get('type');
 
-    this.instrument = this.activatedRoute.snapshot.paramMap.get('instrument');
-    this.tuning = this.activatedRoute.snapshot.paramMap.get('tuning');
-    this.note = this.activatedRoute.snapshot.paramMap.get('note');
-    this.type = this.activatedRoute.snapshot.paramMap.get('type');
+    this.chordDbFrag = chordDb[instrument][tuning][note][type];
+    this.numberOfStrings = instrumentTunings[instrument][tuning].length;
   }
 
   ngOnInit() {
-    console.log( 
-      Object.keys(
-        this.chordDb[this.instrument][this.tuning][this.note][this.type]['first inversion']
-      )
-    )
+    Object.keys(this.chordDbFrag).forEach(inversionName => {
+      console.log({inversionName});
+
+      console.log(this.chordDbFrag[inversionName]);
+
+      const strings2frets = [];
+      this.chordDbFrag[inversionName].forEach(fret2finger => {
+        // console.log(fret2finger);
+        strings2frets.push(Number(Object.keys(fret2finger)[0]));
+      });
+
+        console.log('strings2frets', strings2frets);
+
+        for (let fret = Math.min(chordDb[inversionName]); fret <= Math.max(chordDb[inversionName]); fret++) {
+          for (let stringNumber = 0; stringNumber < this.numberOfStrings; stringNumber++) {
+
+          }
+        }
+
+    });
   }
 }
