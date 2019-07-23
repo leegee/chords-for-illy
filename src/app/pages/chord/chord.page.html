@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ note }} {{ type }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <section lines="none" *ngFor="let inversion of chordDb[instrument][tuning][note][type] | keyvalue">
+    <h2> {{ inversion.key }} </h2>
+
+    <div class="string string{{ instString.key }}" *ngFor="let instString of inversion.value">
+      <span *ngFor="let stringAndFret of instString | keyvalue">
+        Fret {{ stringAndFret.key }} 
+        Finger {{ stringAndFret.value }}
+      </span>
+    </div>
+
+  </section>
+
+</ion-content>
