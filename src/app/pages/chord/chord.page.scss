@@ -1,0 +1,65 @@
+* {
+    --fret-color  : grey;
+    --string-color: black;
+    --finger-color: hsl(350, 80%, 94%);
+}
+
+.chord {
+    display: flow-root;
+    margin: 1em;
+}
+
+.first-fret-label {
+    background: white;
+    float: left;
+    margin-right: 1em;
+}
+
+.fret-0 {
+    border-top: 3pt double var(--fret-color);
+}
+
+.fretboard {
+    background: hsl(33, 79%, 87%);
+    display: table;
+    float: left;
+    margin-top: 0.3em;
+
+}
+
+.frets {
+    display      : block;
+    margin       : 0;
+    padding      : 0;
+    border-bottom: 1pt solid var(--fret-color);
+}
+
+.string {
+    display       : inline-block;
+    vertical-align: middle;
+    text-align    : center;
+    width         : 2.5em;
+    height        : 2.5em;
+    overflow      : hidden;
+    margin        : 0;
+    padding       : 0;
+    background    : linear-gradient(to right,
+            transparent 0%,
+            transparent calc(50% - 0.81px),
+            var(--string-color) calc(50% - 0.8px),
+            var(--string-color) calc(50% + 0.8px),
+            transparent calc(50% + 0.81px),
+            transparent 100%);
+}
+
+.finger {
+    display         : inline-block;
+    vertical-align  : middle;
+    border          : 1pt solid var(--fret-color);
+    background-color: var(--finger-color);
+    border-radius   : 50%;
+    padding         : 0.3em;
+    text-align      : center;
+    font-weight     : bold;
+    font-family     : sans-serif;
+}

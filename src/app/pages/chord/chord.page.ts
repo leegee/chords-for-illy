@@ -10,8 +10,10 @@ import instrumentTunings from '../../../instrument-tuning.json';
   styleUrls: ['./chord.page.scss'],
 })
 export class ChordPage implements OnInit {
-  numberOfStrings;
-  chordInversions = {};
+  title: string;
+  inversion2firstFret = {};
+  numberOfStrings: number;
+  shapesForInversions = {};
 
   constructor(
     private activatedRoute: ActivatedRoute
@@ -21,32 +23,35 @@ export class ChordPage implements OnInit {
     const note = this.activatedRoute.snapshot.paramMap.get('note');
     const type = this.activatedRoute.snapshot.paramMap.get('type');
 
+    this.title = note + ' ' + type;
+
     const chordDbFrag = chordDb[instrument][tuning][note][type];
     this.numberOfStrings = instrumentTunings[instrument][tuning].length;
 
-    this.chordInversions = this.initChords(chordDbFrag);
+    this.shapesForInversions = this.initChords(chordDbFrag);
   }
 
   ngOnInit() { }
 
   initChords(chordDbFrag) {
-    const chordInversions = {};
+    const shapesForInversions = {};
 
     Object.keys(chordDbFrag).forEach(inversionName => {
-      chordInversions[inversionName] = [];
+      shapesForInversions[inversionName] = [];
 
       const strings2frets: number[] = [];
       chordDbFrag[inversionName].forEach(fret2finger => {
         strings2frets.push(Number(Object.keys(fret2finger)[0]));
       });
 
-      const firstFret = Math.min(...strings2frets);
+      this.inversion2firstFret[inversionName] = Math.min(...strings2frets);
       const lastFret = Math.max(...strings2frets);
 
-      for (let fret = firstFret; fret <= lastFret; fret++) {
-        chordInversions[inversionName][fret] = [];
+      for (let fret = this.inversion2firstFret[inversionName]; fret <= lastFret; fret++) {
+        shapesForInversions[inversionName][fret] = [];
         for (let stringNumber = 0; stringNumber < this.numberOfStrings; stringNumber++) {
-          chordInversions[inversionName][fret][stringNumber] = strings2frets[stringNumber] === fret ? true : false;
+          shapesForInversions[inversionName][fret][stringNumber] = strings2frets[stringNumber] // === fret ?
+            = chordDbFrag[inversionName][stringNumber][fret] || '';
 
           // TODO Handle high inversions with open strings
           // if (strings2frets[stringNumber] === 0 && lastFret < 5) {
@@ -55,6 +60,6 @@ export class ChordPage implements OnInit {
       }
     });
 
-    return chordInversions;
+    return shapesForInversions;
   }
 }

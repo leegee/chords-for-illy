@@ -1,19 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{ note }} {{ type }}</ion-title>
+    <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <section lines="none" *ngFor="let inversion of chordDbFrag | keyvalue">
-    <h2> {{ inversion.key }} </h2>
+  <section class='chord' *ngFor="let inversionShape of shapesForInversions | keyvalue">
+    <h2> {{ inversionShape.key }} </h2>
 
-    <div class="string string{{ instString.key }}" *ngFor="let instString of inversion.value">
-      <span *ngFor="let stringAndFret of instString | keyvalue">
-        Fret {{ stringAndFret.key }} 
-        Finger {{ stringAndFret.value }}
-      </span>
+    <div class="first-fret-label">{{ inversion2firstFret[ inversionShape.key ] }}</div>
+
+    <div class="fretboard">
+      <div *ngFor="let fret of inversionShape.value | keyvalue" class='frets fret-{{ fret.key }}'>
+        <span *ngFor="let str  of fret.value" class="string">
+          <span *ngIf="str" class="finger">{{  str }}</span>
+        </span>
+      </div>
     </div>
 
   </section>
