@@ -10,7 +10,6 @@ import instrumentTunings from '../../../instrument-tuning.json';
   styleUrls: ['./chord.page.scss'],
 })
 export class ChordPage implements OnInit {
-  chordDbFrag;
   numberOfStrings;
   chordInversions = {};
 
@@ -22,30 +21,40 @@ export class ChordPage implements OnInit {
     const note = this.activatedRoute.snapshot.paramMap.get('note');
     const type = this.activatedRoute.snapshot.paramMap.get('type');
 
-    this.chordDbFrag = chordDb[instrument][tuning][note][type];
+    const chordDbFrag = chordDb[instrument][tuning][note][type];
     this.numberOfStrings = instrumentTunings[instrument][tuning].length;
+
+    this.chordInversions = this.initChords(chordDbFrag);
   }
 
-  ngOnInit() {
-    Object.keys(this.chordDbFrag).forEach(inversionName => {
-      console.log({inversionName});
+  ngOnInit() { }
 
-      console.log(this.chordDbFrag[inversionName]);
+  initChords(chordDbFrag) {
+    const chordInversions = {};
 
-      const strings2frets = [];
-      this.chordDbFrag[inversionName].forEach(fret2finger => {
-        // console.log(fret2finger);
+    Object.keys(chordDbFrag).forEach(inversionName => {
+      chordInversions[inversionName] = [];
+
+      const strings2frets: number[] = [];
+      chordDbFrag[inversionName].forEach(fret2finger => {
         strings2frets.push(Number(Object.keys(fret2finger)[0]));
       });
 
-        console.log('strings2frets', strings2frets);
+      const firstFret = Math.min(...strings2frets);
+      const lastFret = Math.max(...strings2frets);
 
-        for (let fret = Math.min(chordDb[inversionName]); fret <= Math.max(chordDb[inversionName]); fret++) {
-          for (let stringNumber = 0; stringNumber < this.numberOfStrings; stringNumber++) {
+      for (let fret = firstFret; fret <= lastFret; fret++) {
+        chordInversions[inversionName][fret] = [];
+        for (let stringNumber = 0; stringNumber < this.numberOfStrings; stringNumber++) {
+          chordInversions[inversionName][fret][stringNumber] = strings2frets[stringNumber] === fret ? true : false;
 
-          }
+          // TODO Handle high inversions with open strings
+          // if (strings2frets[stringNumber] === 0 && lastFret < 5) {
+          // }
         }
-
+      }
     });
+
+    return chordInversions;
   }
 }
