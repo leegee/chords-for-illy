@@ -1,22 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab One
-    </ion-title>
+    <ion-title> Chord Index </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card class="welcome-card">
-    <ion-card-header>
-      <ion-card-subtitle>Chords</ion-card-subtitle>
-      <ion-card-title>Choose a chord name</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      Blah blah
-    </ion-card-content>
-  </ion-card>
-
   <ion-list lines="none" *ngFor="let note of chordDb[instrument][tuning] | keyvalue">
     <ion-list-header>
       <ion-label>{{note.key}} shapes</ion-label>
@@ -24,7 +12,7 @@
 
     <ion-item *ngFor="let chord of note.value | keyvalue"
       href='chord/{{ instrument }}/{{ tuning }}/{{ note.key }}/{{ chord.key }}'>
-      <ion-icon slot="start" color="medium" name="book"></ion-icon>
+      <ion-icon slot="start" color="medium" name="musical-notes"></ion-icon>
       <ion-label>{{ chord.key }}</ion-label>
     </ion-item>
 

@@ -1,5 +1,9 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
     <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +13,18 @@
   <section class='chord' *ngFor="let inversionShape of shapesForInversions | keyvalue">
     <h2> {{ inversionShape.key }} </h2>
 
-    <div class="first-fret-label">{{ inversion2firstFret[ inversionShape.key ] }}</div>
-
     <div class="fretboard">
+
+      <div class="first-fret-label">
+        {{ inversionName2firstFrettedStringFingering[ inversionShape.key ] || '&nbsp;' }}
+      </div>
+
+      <div class='nut'>
+        <span *ngFor="let mark of nutMarkings" class="nut-marking">
+          {{ mark }}
+        </span>
+      </div>
+
       <div *ngFor="let fret of inversionShape.value | keyvalue" class='frets fret-{{ fret.key }}'>
         <span *ngFor="let str  of fret.value" class="string">
           <span *ngIf="str" class="finger">{{  str }}</span>

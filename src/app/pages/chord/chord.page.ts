@@ -1,3 +1,6 @@
+// tslint:disable: no-conditional-assignment
+// tslint:disable: one-line
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivationEnd } from '@angular/router';
 
@@ -11,9 +14,10 @@ import instrumentTunings from '../../../instrument-tuning.json';
 })
 export class ChordPage implements OnInit {
   title: string;
-  inversion2firstFret = {};
+  inversionName2firstFrettedStringFingering = {};
   numberOfStrings: number;
   shapesForInversions = {};
+  nutMarkings = new Array(6).fill(''); // enum X O
 
   constructor(
     private activatedRoute: ActivatedRoute
@@ -40,15 +44,31 @@ export class ChordPage implements OnInit {
       shapesForInversions[inversionName] = [];
 
       const strings2frets: number[] = [];
-      chordDbFrag[inversionName].forEach(fret2finger => {
-        strings2frets.push(Number(Object.keys(fret2finger)[0]));
+
+      chordDbFrag[inversionName].forEach((fret2finger, stringNumber) => {
+        const fingering = Object.keys(fret2finger)[0];
+        if (fingering === 'x') {
+          this.nutMarkings[stringNumber] = 'x';
+        }
+        else if (Number(fingering) === 0) {
+          this.nutMarkings[stringNumber] = 'o';
+          strings2frets[stringNumber] = 0;
+        }
+        else {
+          strings2frets[stringNumber] = Number(fingering);
+        }
       });
 
-      this.inversion2firstFret[inversionName] = Math.min(...strings2frets);
-      const lastFret = Math.max(...strings2frets);
+      console.log(strings2frets);
 
-      for (let fret = this.inversion2firstFret[inversionName]; fret <= lastFret; fret++) {
+      const string2fretsNumbersOnly = (strings2frets.filter(_ => typeof _ !== 'undefined'));
+
+      this.inversionName2firstFrettedStringFingering[inversionName] = Math.min(...string2fretsNumbersOnly);
+      const lastFret = Math.max(...string2fretsNumbersOnly);
+
+      for (let fret = this.inversionName2firstFrettedStringFingering[inversionName]; fret <= lastFret; fret++) {
         shapesForInversions[inversionName][fret] = [];
+
         for (let stringNumber = 0; stringNumber < this.numberOfStrings; stringNumber++) {
           shapesForInversions[inversionName][fret][stringNumber] = strings2frets[stringNumber] // === fret ?
             = chordDbFrag[inversionName][stringNumber][fret] || '';
