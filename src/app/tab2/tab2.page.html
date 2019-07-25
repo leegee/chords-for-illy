@@ -1,9 +1,27 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Choose An Instrument
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content padding>
+
+  <ion-card *ngFor="let instrument of instrumentDb | keyvalue">
+    <ion-card-header>
+      <!-- <ion-card-subtitle></ion-card-subtitle> -->
+      <ion-card-title>{{instrument.key}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-item *ngFor="let tuning of instrument.value | keyvalue" (click)="setInstrumentTuning(instrument.key, tuning.key)">
+      <ion-icon slot="start" color="medium" name="musical-notes"></ion-icon>
+      <ion-label>{{ tuning.key }}</ion-label>
+      <!-- <ion-button fill="outline" slot="end">View</ion-button> -->
+    </ion-item>
+  </ion-card>
+
+
+
+  <!-- <ion-card-content> </ion-card-content> -->
+</ion-content>
