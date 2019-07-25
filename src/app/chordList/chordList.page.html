@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list lines="none" *ngFor="let note of chordDb[instrument][tuning] | keyvalue">
+  <!-- <ion-list lines="none" *ngFor="let note of chordDb[instrument][tuning] | keyvalue">
     <ion-list-header>
       <ion-label>{{note.key}} shapes</ion-label>
     </ion-list-header>
@@ -16,5 +16,23 @@
       <ion-label>{{ chord.key }}</ion-label>
     </ion-item>
 
-  </ion-list>
+  </ion-list> -->
+
+    <div class='circle-container'>
+
+        <div><a href='chord/{{ instrument }}/{{ tuning }}/A/major'>A</a></div>
+        <div>E</div>
+        <div>B C♭</div>
+        <div>F♯ G♭</div>
+        <div>D♭ C♯</div>
+        <div>A♭</div>
+        <div>E♭</div>
+        <div>B♭</div>
+        <div>F</div>
+        <div>C</div>
+        <div>G</div>
+        <div>D</div>
+
+    </div>>
+      
 </ion-content>

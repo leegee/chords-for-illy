@@ -59,8 +59,6 @@ export class ChordPage implements OnInit {
         }
       });
 
-      console.log(strings2frets);
-
       const string2fretsNumbersOnly = (strings2frets.filter(_ => typeof _ !== 'undefined'));
 
       this.inversionName2firstFrettedStringFingering[inversionName] = Math.min(...string2fretsNumbersOnly);
@@ -72,12 +70,12 @@ export class ChordPage implements OnInit {
         for (let stringNumber = 0; stringNumber < this.numberOfStrings; stringNumber++) {
           shapesForInversions[inversionName][fret][stringNumber] = strings2frets[stringNumber] // === fret ?
             = chordDbFrag[inversionName][stringNumber][fret] || '';
-
-          // TODO Handle high inversions with open strings
-          // if (strings2frets[stringNumber] === 0 && lastFret < 5) {
-          // }
         }
       }
+
+      // while (shapesForInversions[inversionName].length < 3) {
+      //   shapesForInversions[inversionName].push(new Array().fill(''));
+      // }
     });
 
     return shapesForInversions;
