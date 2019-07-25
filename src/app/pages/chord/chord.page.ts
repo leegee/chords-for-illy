@@ -24,10 +24,12 @@ export class ChordPage implements OnInit {
   ) {
     const instrument = this.activatedRoute.snapshot.paramMap.get('instrument');
     const tuning = this.activatedRoute.snapshot.paramMap.get('tuning');
-    const note = this.activatedRoute.snapshot.paramMap.get('note');
-    const type = this.activatedRoute.snapshot.paramMap.get('type');
+    const note = this.activatedRoute.snapshot.paramMap.get('note').toUpperCase();
+    const type = this.activatedRoute.snapshot.paramMap.get('type').toLowerCase();
 
     this.title = note + ' ' + type;
+
+    console.log(instrument, tuning, note, type);
 
     const chordDbFrag = chordDb[instrument][tuning][note][type];
     this.numberOfStrings = instrumentTunings[instrument][tuning].length;
