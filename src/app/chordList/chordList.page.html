@@ -10,6 +10,88 @@
   <ion-content padding>
     <section>
       <header>
+        <h1>Circle of Fifths</h1>
+      </header>
+
+      <div class='circle-container'>
+        <div class='note'>
+          A
+          <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/A/major" routerDirection="forward"></a>
+          <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/A/minor" routerDirection="forward"></a>
+        </div>
+
+        <div class='note'>
+          E
+          <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/E/major" routerDirection="forward"></a>
+          <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/E/major" routerDirection="forward"></a>
+        </div>
+
+        <div class='note'>
+          B<sup>C♭</sup>
+          <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/B/major" routerDirection="forward"></a>
+          <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/B/major" routerDirection="forward"></a>
+        </div>
+
+        <div class='note'>
+          <!-- F<sup>♯</sup> -->
+          G<sup>♭</sup>
+          <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/F♯/major" routerDirection="forward"></a>
+          <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/F♯/major" routerDirection="forward"></a>
+        </div>
+
+        <div class='note'>
+          D<sup>♭</sup>
+          <!-- C<sup>♯</sup> -->
+          <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/D♭/major" routerDirection="forward"></a>
+          <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/D♭/major" routerDirection="forward"></a>
+        </div>
+
+        <div class='note'>
+          A<sup>♭</sup>
+          <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/A♭/major" routerDirection="forward"></a>
+          <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/A♭/major" routerDirection="forward"></a>
+        </div>
+
+        <div class='note'>
+          E<sup>♭</sup>
+          <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/E♭/major" routerDirection="forward"></a>
+          <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/E♭/major" routerDirection="forward"></a>
+        </div>
+
+        <div class='note'>
+          B<sup>♭</sup>
+          <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/B♭/major" routerDirection="forward"></a>
+          <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/B♭/major" routerDirection="forward"></a>
+        </div>
+
+        <div class='note'>
+          F
+          <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/F/major" routerDirection="forward"></a>
+          <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/F/major" routerDirection="forward"></a>
+        </div>
+
+        <div class='note'>
+          C
+          <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/C/major" routerDirection="forward"></a>
+          <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/C/major" routerDirection="forward"></a>
+        </div>
+
+        <div class='note'>
+          G
+          <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/G/major" routerDirection="forward"></a>
+          <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/G/major" routerDirection="forward"></a>
+        </div>
+
+        <div class='note'>
+          D
+          <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/D/major" routerDirection="forward"></a>
+          <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/D/major" routerDirection="forward"></a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <header>
         <h1>Index</h1>
       </header>
 
@@ -24,33 +106,6 @@
           <ion-label>{{ type.key }}</ion-label>
         </ion-item>
       </ion-list>
-    </section>
-
-    <section>
-      <header>
-        <h1>Circle of Fifths</h1>
-      </header>
-
-      <div class='circle-container'>
-        <div><a routerLink="/chord/{{ instrument }}/{{ tuning }}/A/major" routerDirection="forward">A</a></div>
-        <div><a routerLink="/chord/{{ instrument }}/{{ tuning }}/E/major" routerDirection="forward">E</a></div>
-        <div><a routerLink="/chord/{{ instrument }}/{{ tuning }}/B/major" routerDirection="forward">B<sup>C♭</sup></a>
-        </div>
-        <div><a routerLink="/chord/{{ instrument }}/{{ tuning }}/F♯/major" routerDirection="forward">F<sup>♯</sup>
-            G<sup>♭</sup></a></div>
-        <div><a routerLink="/chord/{{ instrument }}/{{ tuning }}/D♭/major" routerDirection="forward">D<sup>♭</sup>
-            C<sup>♯</sup></a></div>
-        <div><a routerLink="/chord/{{ instrument }}/{{ tuning }}/A♭/major" routerDirection="forward">A<sup>♭</sup></a>
-        </div>
-        <div><a routerLink="/chord/{{ instrument }}/{{ tuning }}/E♭/major" routerDirection="forward">E<sup>♭</sup></a>
-        </div>
-        <div><a routerLink="/chord/{{ instrument }}/{{ tuning }}/B♭/major" routerDirection="forward">B<sup>♭</sup></a>
-        </div>
-        <div><a routerLink="/chord/{{ instrument }}/{{ tuning }}/F/major" routerDirection="forward">F</a></div>
-        <div><a routerLink="/chord/{{ instrument }}/{{ tuning }}/C/major" routerDirection="forward">C</a></div>
-        <div><a routerLink="/chord/{{ instrument }}/{{ tuning }}/G/major" routerDirection="forward">G</a></div>
-        <div><a routerLink="/chord/{{ instrument }}/{{ tuning }}/D/major" routerDirection="forward">D</a></div>
-      </div>
     </section>
 
   </ion-content>
