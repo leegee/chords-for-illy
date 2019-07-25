@@ -17,7 +17,7 @@ export class ChordPage implements OnInit {
   inversionName2firstFrettedStringFingering = {};
   numberOfStrings: number;
   shapesForInversions = {};
-  nutMarkings = new Array(6).fill(''); // enum X O
+  nutMarkings = {};
 
   constructor(
     private activatedRoute: ActivatedRoute
@@ -34,26 +34,27 @@ export class ChordPage implements OnInit {
     const chordDbFrag = chordDb[instrument][tuning][note][type];
     this.numberOfStrings = instrumentTunings[instrument][tuning].length;
 
-    this.shapesForInversions = this.initChords(chordDbFrag);
+    this.initChords(chordDbFrag);
   }
 
   ngOnInit() { }
 
   initChords(chordDbFrag) {
-    const shapesForInversions = {};
+    this.shapesForInversions = {};
 
     Object.keys(chordDbFrag).forEach(inversionName => {
-      shapesForInversions[inversionName] = [];
+      this.shapesForInversions[inversionName] = [];
+      this.nutMarkings[inversionName] = new Array(6).fill('');
 
       const strings2frets: number[] = [];
 
       chordDbFrag[inversionName].forEach((fret2finger, stringNumber) => {
         const fingering = Object.keys(fret2finger)[0];
         if (fingering === 'x') {
-          this.nutMarkings[stringNumber] = 'x';
+          this.nutMarkings[inversionName][stringNumber] = 'x';
         }
         else if (Number(fingering) === 0) {
-          this.nutMarkings[stringNumber] = 'o';
+          this.nutMarkings[inversionName][stringNumber] = 'o';
           strings2frets[stringNumber] = 0;
         }
         else {
@@ -67,19 +68,13 @@ export class ChordPage implements OnInit {
       const lastFret = Math.max(...string2fretsNumbersOnly);
 
       for (let fret = this.inversionName2firstFrettedStringFingering[inversionName]; fret <= lastFret; fret++) {
-        shapesForInversions[inversionName][fret] = [];
+        this.shapesForInversions[inversionName][fret] = [];
 
         for (let stringNumber = 0; stringNumber < this.numberOfStrings; stringNumber++) {
-          shapesForInversions[inversionName][fret][stringNumber] = strings2frets[stringNumber] // === fret ?
+          this.shapesForInversions[inversionName][fret][stringNumber] = strings2frets[stringNumber] // === fret ?
             = chordDbFrag[inversionName][stringNumber][fret] || '';
         }
       }
-
-      // while (shapesForInversions[inversionName].length < 3) {
-      //   shapesForInversions[inversionName].push(new Array().fill(''));
-      // }
     });
-
-    return shapesForInversions;
   }
 }

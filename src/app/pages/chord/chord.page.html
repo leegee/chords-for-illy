@@ -20,7 +20,7 @@
       </div>
 
       <div class='nut'>
-        <span *ngFor="let mark of nutMarkings" class="nut-marking">
+        <span *ngFor="let mark of nutMarkings[inversionShape.key]" class="nut-marking">
           {{ mark }}
         </span>
       </div>
