@@ -6,6 +6,7 @@ import { ActivatedRoute, ActivationEnd } from '@angular/router';
 
 import chordDb from '../../../chords.json';
 import instrumentTunings from '../../../instrument-tuning.json';
+import chordTemplates from '../../../chord-templates.json';
 
 @Component({
   selector: 'app-chord',
@@ -16,28 +17,77 @@ export class ChordPage implements OnInit {
   title: string;
   inversionName2firstFrettedStringFingering = {};
   numberOfStrings: number;
+  instrument: string;
+  tuning: string;
+  note: string;
   shapesForInversions = {};
   nutMarkings = {};
 
   constructor(
     private activatedRoute: ActivatedRoute
   ) {
-    const instrument = this.activatedRoute.snapshot.paramMap.get('instrument');
-    const tuning = this.activatedRoute.snapshot.paramMap.get('tuning');
-    const note = this.activatedRoute.snapshot.paramMap.get('note').toUpperCase();
+    this.instrument = this.activatedRoute.snapshot.paramMap.get('instrument');
+    this.tuning = this.activatedRoute.snapshot.paramMap.get('tuning');
+    this.note = this.activatedRoute.snapshot.paramMap.get('note').toUpperCase();
     const type = this.activatedRoute.snapshot.paramMap.get('type').toLowerCase();
 
-    this.title = note + ' ' + type;
+    this.title = this.note + ' ' + type;
 
-    console.log(instrument, tuning, note, type);
+    console.log('Chord page for ', this.instrument, this.tuning, this.note, type);
 
-    const chordDbFrag = chordDb[instrument][tuning][note][type];
-    this.numberOfStrings = instrumentTunings[instrument][tuning].length;
+    this.numberOfStrings = instrumentTunings[this.instrument][this.tuning].length;
 
+    const chordDbFrag = this.computeChords(
+      chordDb[this.instrument][this.tuning][this.note][type], type
+    );
     this.initChords(chordDbFrag);
   }
 
   ngOnInit() { }
+
+  computeChords(chordDbFrag, type) {
+    const thisNoteNumber = this.note.toLowerCase().charCodeAt(0) - 97;
+
+    chordTemplates[this.instrument][this.tuning]
+      .filter(_ => _.majorminor === type)
+      .forEach(template => {
+        const fretsToAdd = thisNoteNumber + template.fretsToA;
+
+        chordDbFrag[template.shapeName] = [];
+
+        let skip = false;
+        template.frets2strings.forEach(fret2finger => {
+          const fret = Object.keys(fret2finger)[0];
+          const finger = fret2finger[fret];
+
+          let transposedFret;
+          let transposedFinger = finger;
+
+          if (!isNaN(Number(fret))) {
+            transposedFret = Number(fret) + fretsToAdd;
+            if (transposedFret >= 12) {
+              transposedFret -= 12;
+            }
+            if (transposedFret === 0) {
+              skip = true;
+            }
+          } else {
+            transposedFret = fret;
+          }
+
+          chordDbFrag[template.shapeName].push({
+            [transposedFret]: transposedFinger
+          });
+        });
+
+        if (skip) {
+          delete chordDbFrag[template.shapeName];
+        }
+
+      });
+
+    return chordDbFrag;
+  }
 
   initChords(chordDbFrag) {
     this.shapesForInversions = {};

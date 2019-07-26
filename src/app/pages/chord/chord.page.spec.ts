@@ -3,16 +3,18 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChordPage } from './chord.page';
 
+import chordDb from '../../../chords.json';
+
 describe('ChordPage', () => {
   let component: ChordPage;
   let fixture: ComponentFixture<ChordPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChordPage ],
+      declarations: [ChordPage],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -23,5 +25,14 @@ describe('ChordPage', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should compute chords', () => {
+    const chordDbFrag = this.computeChords(
+      chordDb.guitar['standard tuning'].A.major, 'major'
+    );
+
+    console.log(chordDbFrag);
+
   });
 });

@@ -1,0 +1,56 @@
+{
+    "guitar": {
+        "standard tuning": [
+            {
+                "majorminor": "major",
+                "shapeName": "E shape (auto-gen)",
+                "fretsToA": 5,
+                "frets2strings": [
+                    {
+                        "0": 1
+                    },
+                    {
+                        "2": 4
+                    },
+                    {
+                        "2": 3
+                    },
+                    {
+                        "1": 2
+                    },
+                    {
+                        "0": 1
+                    },
+                    {
+                        "0": 1
+                    }
+                ]
+            },
+            {
+                "majorminor": "major",
+                "shapeName": "C shape (auto-gen)",
+                "fretsToA": 9,
+                "frets2strings": [
+                    {
+                        "x": 0
+                    },
+                    {
+                        "4": 4
+                    },
+                    {
+                        "3": 3
+                    },
+                    {
+                        "1": 1
+                    },
+                    {
+                        "2": 2
+                    },
+                    {
+                        "1": 1
+                    }
+                ]
+            }
+        ]
+    }
+}
