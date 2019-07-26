@@ -5,7 +5,7 @@
 
 .chord {
     display : flow-root;
-    margin  : 2em 2em;
+    margin  : 0 0 2em 2em;
     position: relative;
 }
 
@@ -36,12 +36,6 @@
     float     : left;
     margin-top: 0.3em;
     background: hsl(33, 79%, 87%);
-
-    // background: linear-gradient(to right,
-    //         transparent 0,
-    //         hsl(33, 79%, 87%) 10%,
-    //         hsl(33, 79%, 87%) 90%,
-    //         transparent 100%);
 }
 
 .frets {
@@ -82,4 +76,9 @@
     font-weight     : bold;
     font-family     : sans-serif;
     width           : 2em;
+}
+
+.chord > .finger-1:first-of-type,
+.chord > .finger-1:last-of-type {
+    background-color: red;
 }

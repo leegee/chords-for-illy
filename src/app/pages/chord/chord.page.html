@@ -26,8 +26,8 @@
       </div>
 
       <div *ngFor="let fret of inversionShape.value | keyvalue: numeric" class='frets fret-{{ fret.key }}'>
-        <span *ngFor="let str  of fret.value" class="string">
-          <span *ngIf="str" class="finger">{{  str }}</span>
+        <span *ngFor="let finger  of fret.value" class="string">
+          <span *ngIf="finger" class="finger finger-{{finger}}">{{ finger }}</span>
         </span>
       </div>
     </div>

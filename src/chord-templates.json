@@ -84,6 +84,19 @@
             },
             {
                 "majorminor": "major",
+                "shapeName": "A shape easy",
+                "fretsToA": 0,
+                "frets2strings": [
+                    { "x": 0 },
+                    { "x": 0 },
+                    { "2": 1 },
+                    { "2": 1 },
+                    { "2": 1 },
+                    { "x": 0 }
+                ]
+            },
+            {
+                "majorminor": "major",
                 "shapeName": "E shape",
                 "fretsToA": 5,
                 "frets2strings": [

@@ -74,15 +74,6 @@ export class ChordPage implements OnInit {
       .filter(_ => _.majorminor === type)
       .forEach(template => {
         const fretsToAdd = (thisNoteNumber + Number(template.fretsToA));
-
-        console.log('%s - for %s (%d) add %d to A, == %d  ',
-          template.shapeName,
-          this.note,
-          thisNoteNumber,
-          template.fretsToA,
-          fretsToAdd
-        );
-
         const newFret2finger = [];
         const fingersInChord = {};
         let fingersOver12fret = 0;
@@ -105,12 +96,11 @@ export class ChordPage implements OnInit {
             _ => {
               const fret = Object.keys(_)[0];
               const finger = Object.values(_)[0];
-              const rv = {
+              return {
                 [
                   (!isNaN(Number(fret))) ? (Number(fret) - 12) : fret
                 ]: finger
               };
-              return rv;
             });
         }
 
@@ -159,7 +149,24 @@ export class ChordPage implements OnInit {
             = chordDbFrag[inversionName][stringNumber][fret] || '';
         }
       }
-    });
+
+      // Add barre
+    //   let lastFinger = 0;
+    //   this.shapesForInversions[inversionName][
+    //     this.inversionName2firstFrettedStringFingering[inversionName]
+    //   ].forEach((finger, index) => {
+    //     if (finger !== 0 && finger === lastFinger && finger === '') {
+    //       this.shapesForInversions[inversionName][
+    //         this.inversionName2firstFrettedStringFingering[inversionName]
+    //       ][index] = lastFinger;
+    //     }
+
+    //     if (finger !== '') {
+    //       lastFinger = finger;
+    //     }
+    //   });
+    // });
+
 
     console.log(this.shapesForInversions);
   }
