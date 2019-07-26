@@ -94,8 +94,7 @@ export class ChordPage implements OnInit {
           newFret2finger.push({ [transposedFret]: fret2finger[fret] });
         });
 
-        if (fingersOver12fret === Object.keys(fingersInChord).length) {
-          console.log('BEFORE', newFret2finger);
+        if (fingersOver12fret >= Object.keys(fingersInChord).length) {
           chordDbFrag[template.shapeName] = newFret2finger.map(
             _ => {
               const fret = Object.keys(_)[0];
@@ -107,8 +106,6 @@ export class ChordPage implements OnInit {
               };
               return rv;
             });
-
-          console.log('AFTER', chordDbFrag[template.shapeName]);
         }
 
         else {
