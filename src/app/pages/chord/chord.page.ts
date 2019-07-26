@@ -151,21 +151,21 @@ export class ChordPage implements OnInit {
       }
 
       // Add barre
-    //   let lastFinger = 0;
-    //   this.shapesForInversions[inversionName][
-    //     this.inversionName2firstFrettedStringFingering[inversionName]
-    //   ].forEach((finger, index) => {
-    //     if (finger !== 0 && finger === lastFinger && finger === '') {
-    //       this.shapesForInversions[inversionName][
-    //         this.inversionName2firstFrettedStringFingering[inversionName]
-    //       ][index] = lastFinger;
-    //     }
+      // let lastFinger = 0;
+      // this.shapesForInversions[inversionName][
+      //   this.inversionName2firstFrettedStringFingering[inversionName]
+      // ].forEach((finger, index) => {
+      //   if (finger !== 0 && finger === lastFinger && finger === '') {
+      //     this.shapesForInversions[inversionName][
+      //       this.inversionName2firstFrettedStringFingering[inversionName]
+      //     ][index] = lastFinger;
+      //   }
 
-    //     if (finger !== '') {
-    //       lastFinger = finger;
-    //     }
-    //   });
-    // });
+      //   if (finger !== '') {
+      //     lastFinger = finger;
+      //   }
+      // });
+    });
 
 
     console.log(this.shapesForInversions);
