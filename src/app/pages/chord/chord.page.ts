@@ -53,6 +53,12 @@ export class ChordPage implements OnInit {
 
     this.numberOfStrings = instrumentTunings[this.instrument][this.tuning].length;
 
+    chordDb[this.instrument][this.tuning][this.note] = chordDb[this.instrument][this.tuning][this.note] || {
+      major: [],
+      minor: []
+    };
+    chordDb[this.instrument][this.tuning][this.note][type] = chordDb[this.instrument][this.tuning][this.note][type] || {};
+
     const chordDbFrag = this.computeChords(
       chordDb[this.instrument][this.tuning][this.note][type], type
     );
