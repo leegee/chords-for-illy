@@ -81,12 +81,14 @@ export class ChordPage implements OnInit {
         template.frets2strings.forEach(fret2finger => {
           const fret = Object.keys(fret2finger)[0];
           const transposedFret = (!isNaN(Number(fret))) ? Number(fret) + fretsToAdd : fret;
-          if (transposedFret >= 12) {
+          if (transposedFret > 12) {
             fingersOver12fret++;
           }
 
-          fingersInChord[fret2finger[fret]] = fingersInChord[fret2finger[fret]] || 0;
-          fingersInChord[fret2finger[fret]]++;
+          if (fret !== 'x') {
+            fingersInChord[fret2finger[fret]] = fingersInChord[fret2finger[fret]] || 0;
+            fingersInChord[fret2finger[fret]]++;
+          }
 
           newFret2finger.push({ [transposedFret]: fret2finger[fret] });
         });
@@ -166,9 +168,6 @@ export class ChordPage implements OnInit {
       //   }
       // });
     });
-
-
-    console.log(this.shapesForInversions);
   }
 
   numeric = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
