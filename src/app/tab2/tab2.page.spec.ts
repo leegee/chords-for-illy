@@ -1,7 +1,13 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Storage } from '@ionic/storage';
 
 import { Tab2Page } from './tab2.page';
+
+const StorageMock: any = {
+  get: () => new Promise<any>((resolve, reject) => resolve('')),
+  set: () => {}
+};
 
 describe('Tab2Page', () => {
   let component: Tab2Page;
@@ -11,6 +17,12 @@ describe('Tab2Page', () => {
     TestBed.configureTestingModule({
       declarations: [Tab2Page],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [
+        {
+          provide: Storage,
+          useValue: StorageMock
+        }
+      ]
     }).compileComponents();
   }));
 
