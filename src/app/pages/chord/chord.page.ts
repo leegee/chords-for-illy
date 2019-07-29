@@ -41,11 +41,20 @@ export class ChordPage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute
-  ) {
+  ) { }
+
+  ngOnInit() {
     this.instrument = this.activatedRoute.snapshot.paramMap.get('instrument');
     this.tuning = this.activatedRoute.snapshot.paramMap.get('tuning');
-    this.note = this.activatedRoute.snapshot.paramMap.get('note').toUpperCase();
-    const type = this.activatedRoute.snapshot.paramMap.get('type').toLowerCase();
+    this.note = (this.activatedRoute.snapshot.paramMap.get('note') || '').toUpperCase();
+    const type = (this.activatedRoute.snapshot.paramMap.get('type') || '').toLowerCase();
+
+    if (!(this.instrument && this.tuning && this.note && type)) {
+      return;
+      // throw new Error(
+      //   `Invalid URL: chord/${this.instrument || ':instrument'}/${this.tuning || ':tuning'}/${this.note || ':note'}/${type || '[major|minor]'}`
+      // );
+    }
 
     this.title = this.note + ' ' + type;
 
@@ -65,8 +74,6 @@ export class ChordPage implements OnInit {
     this.initChords(chordDbFrag);
   }
 
-  ngOnInit() { }
-
   computeChords(chordDbFrag, type) {
     const thisNoteNumber = ChordPage.note2interval[this.note.toLowerCase()];
 
@@ -81,7 +88,7 @@ export class ChordPage implements OnInit {
         template.frets2strings.forEach(fret2finger => {
           const fret = Object.keys(fret2finger)[0];
           const transposedFret = (!isNaN(Number(fret))) ? Number(fret) + fretsToAdd : fret;
-          if (transposedFret > 12) {
+          if (transposedFret > 14) {
             fingersOver12fret++;
           }
 
