@@ -71,7 +71,7 @@ describe('ChordPage', () => {
 
   // it('should compute chords', () => {
   //   const chordDbFrag = this.computeChords(
-  //     chordDb.guitar['standard tuning'].A.major, 'major'
+  //     chordDb.guitar['standard'].A.major, 'major'
   //   );
 
   //   console.log(chordDbFrag);

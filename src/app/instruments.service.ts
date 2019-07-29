@@ -23,7 +23,7 @@ export class InstrumentsService {
     return Promise.all([
       // TODO get these values from the json
       this.storage.get('instrument').then((val) => this.instrument = val || 'guitar'),
-      this.storage.get('tuning').then((val) => this.tuning = val || 'standard tuning')
+      this.storage.get('tuning').then((val) => this.tuning = val || 'standard')
     ]);
   }
 }

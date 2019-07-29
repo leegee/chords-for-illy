@@ -1,6 +1,6 @@
 {
     "guitar": {
-        "standard tuning": [
+        "standard": [
             {
                 "majorminor": "major",
                 "shapeName": "diminished",
