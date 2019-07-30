@@ -1,5 +1,6 @@
 // tslint:disable: no-conditional-assignment
 // tslint:disable: one-line
+// tslint:disable: object-literal-key-quotes
 
 import { Component, OnInit, ɵConsole } from '@angular/core';
 import { ActivatedRoute, ActivationEnd } from '@angular/router';
@@ -49,16 +50,17 @@ export class ChordPage implements OnInit {
     this.note = (this.activatedRoute.snapshot.paramMap.get('note') || '').toUpperCase();
     const type = (this.activatedRoute.snapshot.paramMap.get('type') || '').toLowerCase();
 
+    console.log('Chord page for ', this.instrument, this.tuning, this.note, type);
+
     if (!(this.instrument && this.tuning && this.note && type)) {
-      return;
-      // throw new Error(
-      //   `Invalid URL: chord/${this.instrument || ':instrument'}/${this.tuning || ':tuning'}/${this.note || ':note'}/${type || '[major|minor]'}`
-      // );
+      throw new Error(
+        // tslint:disable-next-line: max-line-length
+        `Invalid URL: chord/${this.instrument || ':instrument'}/${this.tuning || ':tuning'}/${this.note || ':note'}/${type || '[major|minor]'}`
+      );
     }
 
     this.title = this.note + ' ' + type;
 
-    console.log('Chord page for ', this.instrument, this.tuning, this.note, type);
 
     this.numberOfStrings = instrumentTunings[this.instrument][this.tuning].length;
 

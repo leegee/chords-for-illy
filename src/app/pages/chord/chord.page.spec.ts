@@ -2,57 +2,57 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Location } from '@angular/common';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Router, provideRoutes } from '@angular/router';
+import { Router, provideRoutes, ActivatedRoute } from '@angular/router';
 
 import { routes } from '../../app-routing.module';
 import { ChordPage } from './chord.page';
 
 import chordDb from '../../../chords.json';
 
-let location: Location;
-let router: Router;
-
-
 const fixtureData = {
-  note: 'A',
-  type: 'major'
+  note: 'a',
+  type: 'major',
+  instrument: 'guitar',
+  tuning: 'standard'
 };
+
+let router: Router;
+let location: Location;
 
 describe('ChordPage', () => {
   let component: ChordPage;
   let fixture: ComponentFixture<ChordPage>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes(routes)],
-      declarations: [ChordPage],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [
-        provideRoutes(routes)
-      ]
-    })
-      .compileComponents();
+    const paramMap = new Map();
+    Object.keys(fixtureData).forEach(key => paramMap.set(key, fixtureData[key]));
+
+    TestBed.configureTestingModule(
+      {
+        imports: [RouterTestingModule.withRoutes(routes)],
+        declarations: [ChordPage],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+        providers: [
+          provideRoutes(routes),
+          {
+            provide: ActivatedRoute,
+            useValue: {
+              snapshot: {
+                paramMap
+              }
+            }
+          }
+        ]
+      }
+    ).compileComponents();
 
     fixture = TestBed.createComponent(ChordPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
     router = TestBed.get(Router);
     location = TestBed.get(Location);
-
     fixture = TestBed.createComponent(ChordPage);
-    // router.initialNavigation();
   });
-
-  it('fakeAsync works', fakeAsync(() => {
-    const promise = new Promise(resolve => {
-      setTimeout(resolve, 10);
-    });
-    let done = false;
-    promise.then(() => (done = true));
-    tick(50);
-    expect(done).toBeTruthy();
-  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -62,7 +62,6 @@ describe('ChordPage', () => {
   it('navigate to a chord', fakeAsync(() => {
     fixture.ngZone.run(() => {
       const url = `chord/guitar/standard/${fixtureData.note}/${fixtureData.type}`;
-      console.log('NAVIGATE TO ', url);
       router.navigate([url]);
       fixture.detectChanges();
       fixture.whenStable().then(() => {
