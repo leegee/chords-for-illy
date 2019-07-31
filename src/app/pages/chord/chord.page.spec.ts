@@ -1,13 +1,11 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { Location } from '@angular/common';
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router, provideRoutes, ActivatedRoute } from '@angular/router';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModuleFactoryLoader } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { routes } from '../../app-routing.module';
 import { ChordPage } from './chord.page';
 
 import chordDb from '../../../chords.json';
+import { TabsPageModule } from 'src/app/tabs/tabs.module';
+import { ActivatedRoute } from '@angular/router';
 
 const fixtureData = {
   note: 'a',
@@ -16,8 +14,6 @@ const fixtureData = {
   tuning: 'standard'
 };
 
-let router: Router;
-let location: Location;
 
 describe('ChordPage', () => {
   let component: ChordPage;
@@ -29,11 +25,9 @@ describe('ChordPage', () => {
 
     TestBed.configureTestingModule(
       {
-        imports: [RouterTestingModule.withRoutes(routes)],
         declarations: [ChordPage],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
         providers: [
-          provideRoutes(routes),
           {
             provide: ActivatedRoute,
             useValue: {
@@ -49,8 +43,6 @@ describe('ChordPage', () => {
     fixture = TestBed.createComponent(ChordPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    router = TestBed.get(Router);
-    location = TestBed.get(Location);
     fixture = TestBed.createComponent(ChordPage);
   });
 
@@ -59,25 +51,24 @@ describe('ChordPage', () => {
   });
 
 
-  it('navigate to a chord', fakeAsync(() => {
+  it('navigate to a chord', () => {
     fixture.ngZone.run(() => {
       const url = `chord/guitar/standard/${fixtureData.note}/${fixtureData.type}`;
-      router.navigate([url]);
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        // expect({ stuff }).toHaveBeenCalled();
-        expect(1).toBe(1);
+        expect(component.numberOfStrings).toBe(6);
       });
     });
-  }));
+  });
 
 
-  // it('should compute chords', () => {
-  //   const chordDbFrag = this.computeChords(
-  //     chordDb.guitar['standard'].A.major, 'major'
-  //   );
+  it('should compute chords', () => {
+    const chordDbFrag = component.computeChords(
+      chordDb.guitar.standard.A.major, 'major'
+    );
 
-  //   console.log(chordDbFrag);
-  // });
+    // tslint:disable
+    // console.log(JSON.stringify( chordDbFrag, {}, 4 ));
+  });
 
 });

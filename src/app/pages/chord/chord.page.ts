@@ -61,7 +61,6 @@ export class ChordPage implements OnInit {
 
     this.title = this.note + ' ' + type;
 
-
     this.numberOfStrings = instrumentTunings[this.instrument][this.tuning].length;
 
     chordDb[this.instrument][this.tuning][this.note] = chordDb[this.instrument][this.tuning][this.note] || {
