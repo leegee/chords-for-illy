@@ -2,7 +2,7 @@
   "index": "/index.html",
   "assetGroups": [
     {
-      "name": "app",
+      "name": "chords",
       "installMode": "prefetch",
       "resources": {
         "files": [
