@@ -3,82 +3,79 @@
     --string-color: black;
 }
 
-.chord {
+.chord-box {
     display : flow-root;
     margin  : 0 0 2em 2em;
     position: relative;
+    float   : left;
+
+    .first-fret-label {
+        position   : absolute;
+        margin-left: -1em;
+        margin-top : 0.5em;
+        width      : 2em;
+    }
+
+    .nut {
+        background: white;
+    }
+
+    .nut-marking {
+        display   : inline-block;
+        text-align: center;
+        width     : 2.5em;
+    }
+
+    .fret-0 {
+        border-top: 3pt double var(--fret-color);
+        height    : 1px;
+    }
+
+    .fretboard {
+        display   : table;
+        float     : left;
+        margin-top: 0.3em;
+        background: hsl(33, 79%, 87%);
+    }
+
+    .frets {
+        display      : block;
+        margin       : 0;
+        padding      : 0;
+        border-bottom: 1pt solid var(--fret-color);
+    }
+
+    .string {
+        display       : inline-block;
+        vertical-align: middle;
+        text-align    : center;
+        width         : 2.5em;
+        height        : 2.5em;
+        overflow      : hidden;
+        margin        : 0;
+        padding       : 0;
+        background    : linear-gradient(to right,
+                transparent 0%,
+                transparent calc(50% - 0.81px),
+                var(--string-color) calc(50% - 0.8px),
+                var(--string-color) calc(50% + 0.8px),
+                transparent calc(50% + 0.81px),
+                transparent 100%);
+    }
+
+    .finger {
+        display         : inline-block;
+        margin-top      : 4pt;
+        vertical-align  : middle;
+        border          : 1px solid white;
+        color           : white;
+        background-color: blue;
+        border-radius   : 50%;
+        padding         : 0.3em;
+        text-align      : center;
+        font-weight     : bold;
+        font-family     : sans-serif;
+        width           : 2em;
+    }
 }
 
-.first-fret-label {
-    position   : absolute;
-    margin-left: -1em;
-    margin-top : 0.5em;
-    width      : 2em;
-}
-
-.nut {
-    background: white;
-}
-
-.nut-marking {
-    display   : inline-block;
-    text-align: center;
-    width     : 2.5em;
-}
-
-.fret-0 {
-    border-top: 3pt double var(--fret-color);
-    height    : 1px;
-}
-
-.fretboard {
-    display   : table;
-    float     : left;
-    margin-top: 0.3em;
-    background: hsl(33, 79%, 87%);
-}
-
-.frets {
-    display      : block;
-    margin       : 0;
-    padding      : 0;
-    border-bottom: 1pt solid var(--fret-color);
-}
-
-.string {
-    display       : inline-block;
-    vertical-align: middle;
-    text-align    : center;
-    width         : 2.5em;
-    height        : 2.5em;
-    overflow      : hidden;
-    margin        : 0;
-    padding       : 0;
-    background    : linear-gradient(to right,
-            transparent 0%,
-            transparent calc(50% - 0.81px),
-            var(--string-color) calc(50% - 0.8px),
-            var(--string-color) calc(50% + 0.8px),
-            transparent calc(50% + 0.81px),
-            transparent 100%);
-}
-
-.finger {
-    display         : inline-block;
-    margin-top      : 4pt;
-    vertical-align  : middle;
-    border          : 1px solid white;
-    color           : white;
-    background-color: blue;
-    border-radius   : 50%;
-    padding         : 0.3em;
-    text-align      : center;
-    font-weight     : bold;
-    font-family     : sans-serif;
-    width           : 2em;
-}
-
-.chord > .finger-1:first-of-type,
-.chord > .finger-1:last-of-type {
-    background-color: red;
-}
