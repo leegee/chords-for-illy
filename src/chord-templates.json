@@ -1,5 +1,46 @@
 {
     "guitar": {
+        "manouche": [
+            {
+                "majorminor": "major",
+                "shapeName": "6",
+                "fretsToA": 10,
+                "frets2strings": [
+                    { "2": 3 },
+                    { "2": 3 },
+                    { "1": 2 },
+                    { "1": 2 },
+                    { "3": 3 },
+                    { "3": 3 }
+                ]
+            },
+            {
+                "majorminor": "major",
+                "shapeName": "7",
+                "fretsToA": 10,
+                "frets2strings": [
+                    { "2": 3 },
+                    { "2": 3 },
+                    { "1": 2 },
+                    { "3": 3 },
+                    { "3": 3 },
+                    { "3": 3 }
+                ]
+            },
+            {
+                "majorminor": "major",
+                "shapeName": "7 (fat)",
+                "fretsToA": 0,
+                "frets2strings": [
+                    { "2": 5 },
+                    { "1": 4 },
+                    { "3": 5 },
+                    { "4": 6 },
+                    { "x": 0 },
+                    { "x": 0 }
+                ]
+            }
+        ],
         "standard": [
             {
                 "majorminor": "major",

@@ -3,6 +3,10 @@ import { Storage } from '@ionic/storage';
 
 import instrumentTunings from '../instrument-tuning.json';
 
+// TODO get these values from the json
+const DEFAULT_CHORD_SET = 'manouche';
+const DEFAULT_INSTRUMENT = 'guitar';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,9 +25,8 @@ export class InstrumentsService {
 
   getInstrumentTuning() {
     return Promise.all([
-      // TODO get these values from the json
-      this.storage.get('instrument').then((val) => this.instrument = val || 'guitar'),
-      this.storage.get('tuning').then((val) => this.tuning = val || 'standard')
+      this.storage.get('instrument').then((val) => this.instrument = val || DEFAULT_INSTRUMENT),
+      this.storage.get('tuning').then((val) => this.tuning = val || DEFAULT_CHORD_SET)
     ]);
   }
 }

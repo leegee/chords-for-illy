@@ -10,7 +10,8 @@
 
 <ion-content>
 
-  <section class='chord-box' *ngFor="let inversionShape of shapesForInversions | keyvalue">
+  <section class='chord-box' (click)="enlarge(inversionShape.key)" id="{{ inversionShape.key }}"
+    *ngFor="let inversionShape of shapesForInversions | keyvalue">
     <h2> {{ inversionShape.key }} </h2>
 
     <div class="fretboard">
@@ -33,5 +34,7 @@
     </div>
 
   </section>
+
+  <aside id='modal' class='invisible large'></aside>
 
 </ion-content>

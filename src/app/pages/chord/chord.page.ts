@@ -2,8 +2,9 @@
 // tslint:disable: one-line
 // tslint:disable: object-literal-key-quotes
 
-import { Component, OnInit, ɵConsole } from '@angular/core';
-import { ActivatedRoute, ActivationEnd } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 
 import chordDb from '../../../chords.json';
 import instrumentTunings from '../../../instrument-tuning.json';
@@ -41,7 +42,8 @@ export class ChordPage implements OnInit {
   nutMarkings = {};
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -61,12 +63,13 @@ export class ChordPage implements OnInit {
 
     this.title = this.note + ' ' + type;
 
-    this.numberOfStrings = instrumentTunings[this.instrument][this.tuning].length;
+    this.numberOfStrings = instrumentTunings[this.instrument][this.tuning] ? instrumentTunings[this.instrument][this.tuning].length : 6;
 
     chordDb[this.instrument][this.tuning][this.note] = chordDb[this.instrument][this.tuning][this.note] || {
       major: [],
       minor: []
     };
+
     chordDb[this.instrument][this.tuning][this.note][type] = chordDb[this.instrument][this.tuning][this.note][type] || {};
 
     const chordDbFrag = this.computeChords(
@@ -180,6 +183,21 @@ export class ChordPage implements OnInit {
 
   numeric = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
     return Number(a.key) > Number(b.key) ? 1 : (Number(b.key) > Number(a.key) ? -1 : 0);
+  }
+
+  enlarge(domId) {
+    const modalContent = document.getElementById(domId).cloneNode(true);
+    const modal = document.getElementById('modal');
+    modal.appendChild(modalContent);
+    (modal as HTMLElement).classList.remove('invisible');
+    (modal as HTMLElement).classList.add('visible');
+    const click = () => {
+      (modal as HTMLElement).classList.add('invisible');
+      (modal as HTMLElement).classList.remove('visible');
+      modal.innerHTML = '';
+      // document.body.removeEventListener('click', click);
+    };
+    document.body.addEventListener('click', click);
   }
 
 }
