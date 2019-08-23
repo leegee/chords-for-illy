@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-import { KeyValue } from '@angular/common';
-import { ChordService } from 'src/app/chord.service.js';
+import { ChordService } from '../chord.service';
 
 @Component({
-  selector: 'app-chord',
-  templateUrl: './chord.page.html',
-  styleUrls: ['./chord.page.scss'],
+  selector: 'app-details',
+  templateUrl: './details.page.html',
+  styleUrls: ['./details.page.scss'],
 })
-export class ChordPage implements OnInit {
+export class DetailsPage implements OnInit {
   title: string;
   inversionName2firstFrettedStringFingering = {};
   instrument: string;
   tuning: string;
   note: string;
   type: string;
-  shapesForInversions = {};
+  inversion: string;
   nutMarkings = {};
+  shapesForInversions = {};
+  inversionShape = {};
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,8 +29,9 @@ export class ChordPage implements OnInit {
     this.tuning = this.activatedRoute.snapshot.paramMap.get('tuning');
     this.note = (this.activatedRoute.snapshot.paramMap.get('note') || '').toUpperCase();
     this.type = (this.activatedRoute.snapshot.paramMap.get('type') || '').toLowerCase();
+    this.inversion = (this.activatedRoute.snapshot.paramMap.get('inversion') || '').toLowerCase();
 
-    console.log('Chord page for ', this.instrument, this.tuning, this.note, this.type);
+    console.log('Detail page for ', this.instrument, this.tuning, this.note, this.type, this.inversion);
 
     if (!(this.instrument && this.tuning && this.note && this.type)) {
       throw new Error(
@@ -39,18 +40,15 @@ export class ChordPage implements OnInit {
       );
     }
 
-    this.title = this.note + ' ' + this.type;
+    this.title = [this.note, this.type, this.inversion].join(' ');
 
     const chordDbFrag = this.chordService.computeChords(
-      this.instrument, this.tuning, this.note, this.type
+      this.instrument, this.tuning, this.note, this.type, this.inversion
     );
 
     [this.shapesForInversions, this.inversionName2firstFrettedStringFingering, this.nutMarkings] =
-      this.chordService.makeInversions(this.instrument, this.tuning, this.note, this.type, chordDbFrag);
-  }
+      this.chordService.makeInversions(this.instrument, this.tuning, this.note, this.type, chordDbFrag, this.inversion);
 
-  numeric = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
-    return Number(a.key) > Number(b.key) ? 1 : (Number(b.key) > Number(a.key) ? -1 : 0);
+    this.inversionShape = this.shapesForInversions;
   }
-
 }
