@@ -3,16 +3,19 @@
     --string-color: black;
 }
 
+.centered {
+    text-align: center;
+}
+
 .chord-box {
-    font-size: 12pt;
-    display  : flow-root;
-    margin   : 0 0 2em 2em;
+    font-size: 3vmax;
+    display  : inline-block;
+    margin   : auto;
     position : relative;
-    float    : left;
 
     .first-fret-label {
         position   : absolute;
-        margin-left: -1em;
+        margin-left: -2em;
         margin-top : 0.5em;
         width      : 2em;
     }
@@ -58,6 +61,7 @@
         text-align    : center;
         width         : 2.5em;
         height        : 2.5em;
+
         overflow      : hidden;
         margin        : 0;
         padding       : 0;
