@@ -2,6 +2,9 @@
     "guitar": {
         "standard": [
             "E", "A", "D", "G", "B", "E"
+        ],
+        "manouche": [
+            "E", "A", "D", "G", "B", "E"
         ]
     }
 }
