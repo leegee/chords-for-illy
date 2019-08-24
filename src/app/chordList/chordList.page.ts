@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { InstrumentsService } from '../instruments.service.js';
-import { ChordsService } from '../chords.service';
 import { ChordService } from '../chord.service.js';
 
 @Component({
@@ -17,10 +16,8 @@ export class ChordListPage implements OnInit {
   circleOfFifths = ChordService.circleOfFifths;
 
   constructor(
-    private instrumentService: InstrumentsService,
-    private chordsService: ChordsService,
+    private instrumentService: InstrumentsService
   ) {
-    this.chordDb = this.chordsService.chordDb;
   }
 
   async ngOnInit() {
