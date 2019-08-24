@@ -35,19 +35,30 @@
   }
 }
 
+
+.circle-container-mobile {
+  @include on-circle($item-count : 12, $circle-size: 35vmax, $item-size: 4rem);
+}
+
+.circle-container-desktop {
+  @include on-circle($item-count : 12, $circle-size: 40vmax, $item-size: 4rem);
+}
+
 .circle-container {
-  @include on-circle($item-count   : 12, $circle-size: 20rem, $item-size: 4rem);
-  margin                           : 5em auto 0;
-  // border                        : solid 5px #ddd;
+  // @include on-circle($item-count : 12, $circle-size: 40vmax, $item-size: 4rem);
+
+  height        : 100%;
+  flex-direction: column;
+  margin        : auto;
 
   /* NB Font size is for the sharp/flat marks, first-letter for the note name */
   .note {
-    max-width          : 100%;
-    border-radius      : 50%;
-    transition         : .15s;
-    display            : flex;
-    align-items        : center;
-    color              : rgba(192, 192, 192, 0.6);
+    max-width    : 100%;
+    border-radius: 50%;
+    transition   : .15s;
+    display      : flex;
+    align-items  : center;
+    color        : rgba(192, 192, 192, 0.6);
 
     font-weight   : normal;
     font-size     : 3rem;

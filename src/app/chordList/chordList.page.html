@@ -8,19 +8,22 @@
   </ion-header>
 
   <ion-content padding>
-    <section>
-      <div class='circle-container'>
+    <ion-grid style="height: 100%">
+      <ion-row justify-content-center align-items-center class='circle-container circle-container-{{ screenSize }}'>
 
-        <div class='note' *ngFor='let note of circleOfFifths'>
-          {{ note }}
-          <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/{{ note }}/major"
-            routerDirection="forward"></a>
-          <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/{{ note }}/minor"
-            routerDirection="forward"></a>
-        </div>
+            <div class='note' *ngFor='let note of circleOfFifths'>
+              {{ note }}
+              <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/{{ note }}/major"
+                routerDirection="forward"></a>
+              <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/{{ note }}/minor"
+                routerDirection="forward"></a>
+            </div>
 
-      </div>
-    </section>
+      </ion-row>
+    </ion-grid>
+
+
+
 
     <!-- <section>
       <header>

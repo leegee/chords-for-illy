@@ -9,7 +9,7 @@ import { ChordService } from '../chord.service.js';
   styleUrls: ['chordList.page.scss']
 })
 export class ChordListPage implements OnInit {
-  chordDb;
+  screenSize: string;
   instrument: string;
   tuning: string;
   ready = false;
@@ -18,15 +18,16 @@ export class ChordListPage implements OnInit {
   constructor(
     private instrumentService: InstrumentsService
   ) {
+    this.screenSize = screen.width > 601 ? 'desktop' : 'mobile';
+    console.log('screenSize: ', this.screenSize);
   }
 
   async ngOnInit() {
-    console.log('Chord list init');
     await this.instrumentService.getInstrumentTuning();
     this.instrument = this.instrumentService.instrument;
     this.tuning = this.instrumentService.tuning;
     this.ready = true;
-    console.log('Got ', this.instrument, this.tuning);
+    console.log('Chord list for ', this.instrument, this.tuning);
   }
 
 
