@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ChordService } from '../chord.service';
+import { ChordService } from '../../chord.service';
 
 @Component({
   selector: 'app-details',

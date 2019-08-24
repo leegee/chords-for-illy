@@ -8,7 +8,7 @@ export const routes: Routes = [
   },
   {
     path: 'inversion/:instrument/:tuning/:note/:type/:inversion',
-    loadChildren: './details/details.module#DetailsPageModule',
+    loadChildren: './pages/details/details.module#DetailsPageModule',
     pathMatch: 'full'
   },
   {
