@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChordPage } from './chord.page';
 
-import chordDb from '../../../chords.json';
+import chordDb from '../../../chords-open.json';
 import { TabsPageModule } from 'src/app/tabs/tabs.module';
 import { ActivatedRoute } from '@angular/router';
 

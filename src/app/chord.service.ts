@@ -4,7 +4,7 @@
 
 import { Injectable } from '@angular/core';
 
-import chordDb from '../chords.json';
+import chordDb from '../chords-open.json';
 import instrumentTunings from '../instrument-tuning.json';
 import chordTemplates from '../chord-templates.json';
 import { ActivatedRoute } from '@angular/router';

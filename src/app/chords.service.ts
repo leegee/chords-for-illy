@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import chordsDatabase from '../chords.json';
+import chordsDatabase from '../chords-open.json';
 
 @Injectable({
   providedIn: 'root'
