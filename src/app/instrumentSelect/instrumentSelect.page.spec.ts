@@ -2,20 +2,20 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Storage } from '@ionic/storage';
 
-import { Tab2Page } from './tab2.page';
+import { InstrumentSelectPage } from './instrumentSelect.page';
 
 const StorageMock: any = {
   get: () => new Promise<any>((resolve, reject) => resolve('')),
   set: () => {}
 };
 
-describe('Tab2Page', () => {
-  let component: Tab2Page;
-  let fixture: ComponentFixture<Tab2Page>;
+describe('InstrumentSelectPage', () => {
+  let component: InstrumentSelectPage;
+  let fixture: ComponentFixture<InstrumentSelectPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [Tab2Page],
+      declarations: [InstrumentSelectPage],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         {
@@ -27,7 +27,7 @@ describe('Tab2Page', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Tab2Page);
+    fixture = TestBed.createComponent(InstrumentSelectPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -17,11 +17,11 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab2',
+        path: 'instrumentSelect',
         children: [
           {
             path: '',
-            loadChildren: '../tab2/tab2.module#Tab2PageModule'
+            loadChildren: '../instrumentSelect/instrumentSelect.module#InstrumentSelectPageModule'
           }
         ]
       },

@@ -4,11 +4,11 @@ import { InstrumentsService } from '../instruments.service.js';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-instrumentSelect',
+  templateUrl: 'instrumentSelect.page.html',
+  styleUrls: ['instrumentSelect.page.scss']
 })
-export class Tab2Page implements OnInit {
+export class InstrumentSelectPage implements OnInit {
   tuning: string;
   instrument: string;
   instrumentDb: {};
