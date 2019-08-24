@@ -19,8 +19,10 @@ export class InstrumentsService {
   constructor(private storage: Storage) { }
 
   setInstrumentTuning(instrument: string, tuning: string) {
-    this.storage.set('instrument', instrument);
-    this.storage.set('tuning', tuning);
+    return Promise.all([
+      this.storage.set('instrument', instrument),
+      this.storage.set('tuning', tuning)
+    ]);
   }
 
   getInstrumentTuning() {

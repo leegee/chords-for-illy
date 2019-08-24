@@ -40,30 +40,26 @@
   margin                           : 5em auto 0;
   // border                        : solid 5px #ddd;
 
+  /* NB Font size is for the sharp/flat marks, first-letter for the note name */
   .note {
     max-width          : 100%;
     border-radius      : 50%;
-    // filter          : grayscale(100%);
-    // border          : solid 5px #ddd;
-    // background      : #ddd;
     transition         : .15s;
     display            : flex;
     align-items        : center;
-    font-weight        : bolder;
-    font-size          : 4rem;
     color              : rgba(192, 192, 192, 0.6);
 
-    sup {
-      font-weight: normal;
-      font-size  : 3rem;
-      margin-left: -0.2em;
-      margin-top : -0.5em;
-    }
+    font-weight   : normal;
+    font-size     : 3rem;
+    margin-left   : -0.2em;
+    margin-top    : -0.5em;
+    vertical-align: super;
 
-    // &:hover,
-    // &:active {
-    //   filter: grayscale(0);
-    // }
+    .note::first-letter {
+      vertical-align: normal;
+      font-weight   : bolder;
+      font-size     : 4rem;
+    }
 
     a {
       text-decoration: none;

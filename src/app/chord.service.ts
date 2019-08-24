@@ -28,6 +28,10 @@ export class ChordService {
     'a♭': 11
   };
 
+  static circleOfFifths = [
+    'A', 'E', 'B', 'G♭', 'D♭', 'A♭', 'E♭', 'B♭', 'F', 'C', 'G', 'D'
+  ];
+
   title: string;
   inversionName2firstFrettedStringFingering = {};
   instrument: string;
