@@ -2,7 +2,7 @@
 <ng-container *ngIf='ready'>
 
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color='primary'>
       <ion-title class="ion-text-capitalize"> {{instrument}} - {{ tuning }}</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -11,12 +11,14 @@
     <section>
       <div class='circle-container'>
 
-          <div class='note' *ngFor='let note of circleOfFifths'>
-              {{ note }}
-              <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/{{ note }}/major" routerDirection="forward"></a>
-              <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/{{ note }}/minor" routerDirection="forward"></a>
-          </div>
-    
+        <div class='note' *ngFor='let note of circleOfFifths'>
+          {{ note }}
+          <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/{{ note }}/major"
+            routerDirection="forward"></a>
+          <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/{{ note }}/minor"
+            routerDirection="forward"></a>
+        </div>
+
       </div>
     </section>
 
