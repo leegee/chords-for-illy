@@ -42,12 +42,15 @@ export class ChordService {
   shapesForInversions = {};
   nutMarkings = {};
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private chordService: ChordService
-  ) { }
+  constructor() { }
 
-  computeChords(instrument: string, tuning: string, note: string, type: string, inversion?: string) {
+  computeChords(
+    instrument: string,
+    tuning: string,
+    note: string,
+    type: string,
+    inversion?: string
+  ) {
 
     chordDb[instrument][tuning][note] = chordDb[instrument][tuning][note] || {
       major: [],
@@ -63,46 +66,52 @@ export class ChordService {
       .filter(_ => _.majorminor === type)
       .filter(_ => !inversion || _.shapeName === inversion)
       .forEach(template => {
-        const fretsToAdd = (thisNoteNumber + Number(template.fretsToA));
-        const newFret2finger = [];
-        const fingersInChord = {};
-        let fingersOver12fret = 0;
-
-        template.frets2strings.forEach(fret2finger => {
-          const fret = Object.keys(fret2finger)[0];
-          const transposedFret = (!isNaN(Number(fret))) ? Number(fret) + fretsToAdd : fret;
-          if (transposedFret > 14) {
-            fingersOver12fret++;
-          }
-
-          if (fret !== 'x') {
-            fingersInChord[fret2finger[fret]] = fingersInChord[fret2finger[fret]] || 0;
-            fingersInChord[fret2finger[fret]]++;
-          }
-
-          newFret2finger.push({ [transposedFret]: fret2finger[fret] });
-        });
-
-        if (fingersOver12fret >= Object.keys(fingersInChord).length) {
-          chordDbFrag[template.shapeName] = newFret2finger.map(
-            _ => {
-              const fret = Object.keys(_)[0];
-              const finger = Object.values(_)[0];
-              return {
-                [
-                  (!isNaN(Number(fret))) ? (Number(fret) - 12) : fret
-                ]: finger
-              };
-            });
-        }
-
-        else {
-          chordDbFrag[template.shapeName] = newFret2finger;
-        }
-
-      }); // Next template
+        chordDbFrag[template.shapeName] = this.template2chord(template, thisNoteNumber);
+      });
 
     return chordDbFrag;
+  }
+
+  template2chord(template, thisNoteNumber): Array<{}> {
+    const fretsToAdd = (thisNoteNumber + Number(template.fretsToA));
+    const newFret2finger = [];
+    const fingersInChord = {};
+    let fingersOver12fret = 0;
+    let rv;
+
+    template.frets2strings.forEach(fret2finger => {
+      const fret = Object.keys(fret2finger)[0];
+      const transposedFret = (!isNaN(Number(fret))) ? Number(fret) + fretsToAdd : fret;
+      if (transposedFret > 14) {
+        fingersOver12fret++;
+      }
+
+      if (fret !== 'x') {
+        fingersInChord[fret2finger[fret]] = fingersInChord[fret2finger[fret]] || 0;
+        fingersInChord[fret2finger[fret]]++;
+      }
+
+      newFret2finger.push({ [transposedFret]: fret2finger[fret] });
+    });
+
+    if (fingersOver12fret >= Object.keys(fingersInChord).length) {
+      rv = newFret2finger.map(
+        _ => {
+          const fret = Object.keys(_)[0];
+          const finger = Object.values(_)[0];
+          return {
+            [
+              (!isNaN(Number(fret))) ? (Number(fret) - 12) : fret
+            ]: finger
+          };
+        });
+    }
+
+    else {
+      rv = newFret2finger;
+    }
+
+    return rv;
   }
 
   makeInversions(instrument: string, tuning: string, note: string, type: string, chordDbFrag, inversion?: string) {
@@ -112,7 +121,7 @@ export class ChordService {
 
     const numberOfStrings = instrumentTunings[instrument][tuning] ? instrumentTunings[instrument][tuning].length : 6;
 
-    Object.keys(chordDbFrag)  .forEach(inversionName => {
+    Object.keys(chordDbFrag).forEach(inversionName => {
 
       if (inversion !== undefined && inversionName !== inversion) {
         return;
