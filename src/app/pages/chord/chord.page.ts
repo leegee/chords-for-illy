@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { KeyValue } from '@angular/common';
 import { ChordService } from 'src/app/chord.service.js';
 
@@ -16,8 +15,10 @@ export class ChordPage implements OnInit {
   tuning: string;
   note: string;
   type: string;
-  shapesForInversions = {};
   nutMarkings = {};
+  shapesForInversions = {};
+
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,6 +30,7 @@ export class ChordPage implements OnInit {
     this.tuning = this.activatedRoute.snapshot.paramMap.get('tuning');
     this.note = (this.activatedRoute.snapshot.paramMap.get('note') || '').toUpperCase();
     this.type = (this.activatedRoute.snapshot.paramMap.get('type') || '').toLowerCase();
+
 
     console.log('Chord page for ', this.instrument, this.tuning, this.note, this.type);
 
@@ -52,5 +54,4 @@ export class ChordPage implements OnInit {
   numeric = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
     return Number(a.key) > Number(b.key) ? 1 : (Number(b.key) > Number(a.key) ? -1 : 0);
   }
-
 }
