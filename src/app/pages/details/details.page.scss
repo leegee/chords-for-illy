@@ -5,14 +5,17 @@
 
 .chord-box {
     font-size: 3vmax;
-    display: inline-block;
     margin: auto;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 
     .first-fret-label {
         position: absolute;
-        margin-left: -2em;
-        margin-top: 0.5em;
+        margin-left: -1em;
+        margin-top: 2em;
         width: 2em;
     }
 
@@ -84,4 +87,22 @@
         font-family: sans-serif;
         width: 2em;
     }
+
+    .finger-1 {
+        background-color: blue;
+    }
+
+    .finger-2 {
+        background-color: green;
+    }
+
+    .finger-3 {
+        background-color: orange;
+    }
+
+    .finger-4 {
+        background-color: pink;
+    }
+
+
 }
