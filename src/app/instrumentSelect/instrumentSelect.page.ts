@@ -20,8 +20,8 @@ export class InstrumentSelectPage implements OnInit {
     this.instrumentDb = this.instrumentService.instrumentDb;
   }
 
-  ngOnInit() {
-    this.instrumentService.getInstrumentTuning();
+  async ngOnInit() {
+    [this.instrument, this.tuning] = await this.instrumentService.getInstrumentTuning();
   }
 
   async setInstrumentTuning(instrument: string, tuning: string) {

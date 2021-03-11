@@ -8,11 +8,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="centered">
 
-  <section class='chord-box'
-    routerLink="/inversion/{{ instrument }}/{{ tuning }}/{{ note }}/{{ type }}/{{ inversionShape.key }}"
-    routerDirection="forward" *ngFor="let inversionShape of shapesForInversions | keyvalue">
+  <section class='chord-box' routerLink="/inversion/{{ instrument }}/{{ tuning }}/{{ note }}/{{ type }}/{{ inversionShape.key }}" routerDirection="forward"
+    *ngFor="let inversionShape of shapesForInversions | keyvalue">
 
     <h2> {{ inversionShape.key }} </h2>
 

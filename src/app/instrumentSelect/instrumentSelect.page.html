@@ -8,15 +8,14 @@
 
 <ion-content padding>
 
-  <ion-card *ngFor="let instrument of instrumentDb | keyvalue">
+  <ion-card *ngFor="let an_instrument of instrumentDb | keyvalue">
     <ion-card-header>
-      <ion-card-title>{{instrument.key}}</ion-card-title>
+      <ion-card-title [ngClass]="{'selected' : an_instrument.key === instrument}">{{an_instrument.key}}</ion-card-title>
     </ion-card-header>
 
-    <ion-item *ngFor="let tuning of instrument.value | keyvalue"
-      (click)="setInstrumentTuning(instrument.key, tuning.key)">
+    <ion-item *ngFor="let a_tuning of an_instrument.value | keyvalue" (click)="setInstrumentTuning(an_instrument.key, a_tuning.key)">
       <ion-icon slot="start" color="medium" name="musical-notes"></ion-icon>
-      <ion-label>{{ tuning.key }}</ion-label>
+      <ion-label [ngClass]="{'selected' : a_tuning.key === tuning}">{{ a_tuning.key }}</ion-label>
     </ion-item>
   </ion-card>
 

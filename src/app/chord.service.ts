@@ -59,6 +59,7 @@ export class ChordService {
     chordDb[instrument][tuning][note][type] = chordDb[instrument][tuning][note][type] || {};
 
     const chordDbFrag = chordDb[instrument][tuning][note][type];
+    console.log('chordDbFrag', chordDbFrag, instrument, tuning, note, type);
 
     const thisNoteNumber = ChordService.note2interval[note.toLowerCase()];
 
