@@ -1,26 +1,26 @@
 * {
-    --fret-color  : grey;
+    --fret-color: grey;
     --string-color: black;
 }
 
 .chord-box {
     font-size: 4pt;
-    display  : flow-root;
-    margin   : 0 0 2em 2em;
-    position : relative;
-    float    : left;
-    min-height: 5em;
+    display: flow-root;
+    margin: 0 0 2em 2em;
+    position: relative;
+    float: left;
+    min-height: 125px;
 
     h2 {
-        font-size    : 10pt;
+        font-size: 10pt;
         margin-bottom: 4pt;
     }
 
     .first-fret-label {
-        position   : absolute;
+        position: absolute;
         margin-left: -1em;
-        margin-top : 0.5em;
-        width      : 2em;
+        margin-top: 0.5em;
+        width: 2em;
     }
 
     .nut {
@@ -28,45 +28,45 @@
     }
 
     .nut-marking {
-        display   : inline-block;
+        display: inline-block;
         text-align: center;
-        width     : 2.5em;
+        width: 2.5em;
     }
 
     .fret-0 {
         border-top: 3pt double var(--fret-color);
-        height    : 1px;
+        height: 1px;
     }
 
     .fretboard {
-        display   : table;
-        float     : left;
+        display: table;
+        float: left;
         margin-top: 0.3em;
     }
 
     .frets {
-        display      : block;
-        margin       : 0;
-        padding      : 0;
+        display: block;
+        margin: 0;
+        padding: 0;
         border-bottom: 1pt solid var(--fret-color);
         border-top: 1pt solid var(--fret-color);
     }
 
     // Undo all but the first border-top:
-    .frets ~ .frets {
+    .frets~.frets {
         border-top: none;
     }
 
     .string {
-        display       : inline-block;
+        display: inline-block;
         vertical-align: middle;
-        text-align    : center;
-        width         : 2.5em;
-        height        : 2.5em;
-        overflow      : hidden;
-        margin        : 0;
-        padding       : 0;
-        background    : linear-gradient(to right,
+        text-align: center;
+        width: 2.5em;
+        height: 2.5em;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right,
                 transparent 0%,
                 transparent calc(50% - 0.81px),
                 var(--string-color) calc(50% - 0.8px),
@@ -76,15 +76,15 @@
     }
 
     .finger {
-        display         : inline-block;
-        margin-top      : 1pt;
-        vertical-align  : middle;
-        color           : black;
+        display: inline-block;
+        margin-top: 1pt;
+        vertical-align: middle;
+        color: black;
         background-color: black;
-        border-radius   : 50%;
-        padding         : 0.3em;
-        text-align      : center;
-        font-family     : sans-serif;
-        width           : 2em;
+        border-radius: 50%;
+        padding: 0.3em;
+        text-align: center;
+        font-family: sans-serif;
+        width: 2em;
     }
 }
