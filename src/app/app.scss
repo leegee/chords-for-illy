@@ -1,6 +1,5 @@
-// App Styles
-// ----------------------------------------------------------------------------
-// Put style rules here that you want to apply to the entire application. These 
-// styles are for the entire app and not just one component. Additionally, this 
-// file can hold Sass mixins, functions, and placeholder classes to be imported 
-// and used throughout the application.
+#chords-for-illy {
+  max-width: 800pt;
+  margin: 0 auto;
+  border: 1px solid var(--ion-color-primary-shade);
+}
