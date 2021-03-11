@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 import instrumentTunings from '../instrument-tuning.json';
 
 // TODO get these values from the json
-const DEFAULT_CHORD_SET = 'manouche';
+const DEFAULT_CHORD_SET = 'standard'; // 'manouche';
 const DEFAULT_INSTRUMENT = 'guitar';
 
 @Injectable({
