@@ -18,7 +18,7 @@ export class ChordListPage implements OnInit {
   constructor(
     private instrumentService: InstrumentsService
   ) {
-    this.screenSize = screen.width > 601 ? 'desktop' : 'mobile';
+    this.screenSize = screen.width > 900 ? 'desktop' : 'mobile';
     console.log('screenSize: ', this.screenSize);
   }
 

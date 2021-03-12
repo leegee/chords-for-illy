@@ -11,37 +11,14 @@
     <ion-grid style="height: 100%">
       <ion-row justify-content-center align-items-center class='circle-container circle-container-{{ screenSize }}'>
 
-            <div class='note' *ngFor='let note of circleOfFifths'>
-              {{ note }}
-              <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/{{ note }}/major"
-                routerDirection="forward"></a>
-              <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/{{ note }}/minor"
-                routerDirection="forward"></a>
-            </div>
+        <div class='note' *ngFor='let note of circleOfFifths'>
+          {{ note }}
+          <a class='major' routerLink="/chord/{{ instrument }}/{{ tuning }}/{{ note }}/major" routerDirection="forward"></a>
+          <a class='minor' routerLink="/chord/{{ instrument }}/{{ tuning }}/{{ note }}/minor" routerDirection="forward"></a>
+        </div>
 
       </ion-row>
     </ion-grid>
-
-
-
-
-    <!-- <section>
-      <header>
-        <h1>Index</h1>
-      </header>
-
-      <ion-list lines="none" *ngFor="let note of chordDb[instrument][tuning] | keyvalue">
-        <ion-list-header>
-          <ion-label>{{note.key}} shapes</ion-label>
-        </ion-list-header>
-
-        <ion-item *ngFor="let type of note.value | keyvalue"
-          routerLink="/chord/{{ instrument }}/{{ tuning }}/{{ note.key }}/{{ type.key }}" routerDirection="forward">
-          <ion-icon slot="start" color="medium" name="musical-notes"></ion-icon>
-          <ion-label>{{ type.key }}</ion-label>
-        </ion-item>
-      </ion-list>
-    </section> -->
 
   </ion-content>
 

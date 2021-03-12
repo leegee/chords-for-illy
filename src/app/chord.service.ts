@@ -162,20 +162,53 @@ export class ChordService {
       }
 
       // Add barre
-      // let lastFinger = 0;
-      // shapesForInversions[inversionName][
-      //   this.inversionName2firstFrettedStringFingering[inversionName]
-      // ].forEach((finger, index) => {
-      //   if (finger !== 0 && finger === lastFinger && finger === '') {
-      //     shapesForInversions[inversionName][
-      //       this.inversionName2firstFrettedStringFingering[inversionName]
-      //     ][index] = lastFinger;
-      //   }
+      const ADD_BARRE = true;
+      if (ADD_BARRE) {
 
-      //   if (finger !== '') {
-      //     lastFinger = finger;
-      //   }
-      // });
+        for (let fret = inversionName2firstFrettedStringFingering[inversionName]; fret <= lastFret; fret++) {
+          console.log('FRET ', fret);
+          const fingered = {};
+
+          for (let stringNumber = 0; stringNumber < numberOfStrings; stringNumber++) {
+            const finger = chordDbFrag[inversionName][stringNumber][fret];
+            if (finger) {
+              console.log('STRING', stringNumber, finger);
+              fingered[finger] = fingered[finger] || {};
+              fingered[finger][stringNumber] = fingered[finger][stringNumber] || 0;
+              fingered[finger][stringNumber]++;
+            }
+          }
+
+          console.log(fingered);
+        }
+
+      }
+
+      // No small boxes:
+      // Adds an empty fret before:
+      if (inversionName2firstFrettedStringFingering[inversionName] > 1
+        && lastFret - inversionName2firstFrettedStringFingering[inversionName] < 2
+      ) {
+        console.log('b4', JSON.stringify(shapesForInversions[inversionName]));
+        let firstFret = inversionName2firstFrettedStringFingering[inversionName];
+        for (let fretToAdd = inversionName2firstFrettedStringFingering[inversionName] - 1; fretToAdd > inversionName2firstFrettedStringFingering[inversionName] - 2 && fretToAdd > 0; fretToAdd--) {
+          firstFret = fretToAdd;
+          shapesForInversions[inversionName][fretToAdd] = Array(numberOfStrings).fill('');
+        }
+        inversionName2firstFrettedStringFingering[inversionName] = firstFret;
+        console.log('after', firstFret, shapesForInversions[inversionName]);
+      }
+
+
+      // // Adds an empty fret after:
+      if (lastFret - inversionName2firstFrettedStringFingering[inversionName] < 2) {
+        shapesForInversions[inversionName][lastFret + 1] = Array(numberOfStrings).fill('');
+      }
+
+      // Add the nut
+      if (lastFret < 4) {
+        shapesForInversions[inversionName][0] = Array(numberOfStrings).fill('');
+      }
     });
 
     return [shapesForInversions, inversionName2firstFrettedStringFingering, nutMarkings];
