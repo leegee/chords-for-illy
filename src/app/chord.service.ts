@@ -162,11 +162,10 @@ export class ChordService {
       }
 
       // Add barre
-      const ADD_BARRE = true;
+      const ADD_BARRE = false;
       if (ADD_BARRE) {
 
         for (let fret = inversionName2firstFrettedStringFingering[inversionName]; fret <= lastFret; fret++) {
-          console.log('FRET ', fret);
           const fingered = {};
 
           for (let stringNumber = 0; stringNumber < numberOfStrings; stringNumber++) {
@@ -189,14 +188,12 @@ export class ChordService {
       if (inversionName2firstFrettedStringFingering[inversionName] > 1
         && lastFret - inversionName2firstFrettedStringFingering[inversionName] < 2
       ) {
-        console.log('b4', JSON.stringify(shapesForInversions[inversionName]));
         let firstFret = inversionName2firstFrettedStringFingering[inversionName];
         for (let fretToAdd = inversionName2firstFrettedStringFingering[inversionName] - 1; fretToAdd > inversionName2firstFrettedStringFingering[inversionName] - 2 && fretToAdd > 0; fretToAdd--) {
           firstFret = fretToAdd;
           shapesForInversions[inversionName][fretToAdd] = Array(numberOfStrings).fill('');
         }
         inversionName2firstFrettedStringFingering[inversionName] = firstFret;
-        console.log('after', firstFret, shapesForInversions[inversionName]);
       }
 
 
