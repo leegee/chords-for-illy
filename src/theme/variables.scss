@@ -1,6 +1,11 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+:root {
+  --preview-fret-color: grey;
+  --preview-string-color: black;
+}
+
 /** Ionic CSS Variables **/
 :root {
   /** primary **/

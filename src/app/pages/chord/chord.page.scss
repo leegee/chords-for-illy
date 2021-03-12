@@ -1,9 +1,5 @@
-* {
-    --fret-color: grey;
-    --string-color: black;
-}
-
 .chord-box {
+
     display: flow-root;
     position: relative;
     font-size: 4pt;
@@ -34,7 +30,7 @@
     }
 
     .fret-0 {
-        border-top: 3pt double var(--fret-color);
+        border-top: 3pt double var(--preview-fret-color);
         height: 1px;
     }
 
@@ -48,8 +44,8 @@
         display: block;
         margin: 0;
         padding: 0;
-        border-bottom: 1pt solid var(--fret-color);
-        border-top: 1pt solid var(--fret-color);
+        border-bottom: 1pt solid var(--preview-fret-color);
+        border-top: 1pt solid var(--preview-fret-color);
     }
 
     // Undo all but the first border-top:
@@ -69,8 +65,8 @@
         background: linear-gradient(to right,
                 transparent 0%,
                 transparent calc(50% - 0.81px),
-                var(--string-color) calc(50% - 0.8px),
-                var(--string-color) calc(50% + 0.8px),
+                var(--preview-string-color) calc(50% - 0.8px),
+                var(--preview-string-color) calc(50% + 0.8px),
                 transparent calc(50% + 0.81px),
                 transparent 100%);
     }
