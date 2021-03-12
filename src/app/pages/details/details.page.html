@@ -14,7 +14,7 @@
 
     <div class="fretboard">
 
-      <div class="first-fret-label">
+      <div class="first-fret-label" *ngIf="inversionName2firstFrettedStringFingering[ inversionShape.key ] > 3">
         {{ inversionName2firstFrettedStringFingering[ inversionShape.key ] || '&nbsp;' }}
       </div>
 
