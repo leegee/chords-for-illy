@@ -164,7 +164,6 @@ export class ChordService {
       // Add barre
       const ADD_BARRE = false;
       if (ADD_BARRE) {
-
         for (let fret = inversionName2firstFrettedStringFingering[inversionName]; fret <= lastFret; fret++) {
           const fingered = {};
 
@@ -177,11 +176,10 @@ export class ChordService {
               fingered[finger][stringNumber]++;
             }
           }
-
-          console.log(fingered);
         }
-
       }
+
+      console.log(nutMarkings);
 
       // No small boxes:
       // Adds an empty fret before:
@@ -198,7 +196,7 @@ export class ChordService {
 
 
       // // Adds an empty fret after:
-      if (lastFret - inversionName2firstFrettedStringFingering[inversionName] < 2) {
+      if (lastFret - inversionName2firstFrettedStringFingering[inversionName] < 3) {
         shapesForInversions[inversionName][lastFret + 1] = Array(numberOfStrings).fill('');
       }
 
