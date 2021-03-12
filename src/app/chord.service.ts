@@ -59,7 +59,6 @@ export class ChordService {
     chordDb[instrument][tuning][note][type] = chordDb[instrument][tuning][note][type] || {};
 
     const chordDbFrag = chordDb[instrument][tuning][note][type];
-    console.log('chordDbFrag', chordDbFrag, instrument, tuning, note, type);
 
     const thisNoteNumber = ChordService.note2interval[note.toLowerCase()];
 
@@ -179,12 +178,9 @@ export class ChordService {
         }
       }
 
-      console.log(nutMarkings);
-
       // No small boxes:
       // Adds an empty fret before:
       let firstFret = inversionName2firstFrettedStringFingering[inversionName];
-      console.log(firstFret, lastFret - firstFret);
       if (// firstFret > 1 &&
         (lastFret - firstFret < 4)
       ) {

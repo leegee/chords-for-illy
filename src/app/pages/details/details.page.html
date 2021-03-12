@@ -14,17 +14,19 @@
 
     <div class="fretboard">
 
-      <div class="first-fret-label" *ngIf="inversionName2firstFrettedStringFingering[ inversionShape.key ] > 1">
+      <!-- <div class="first-fret-label" *ngIf="inversionName2firstFrettedStringFingering[ inversionShape.key ] > 1">
         {{ inversionName2firstFrettedStringFingering[ inversionShape.key ] || '&nbsp;' }}
-      </div>
+      </div> -->
 
       <div class='nut'>
+        <span class='fret-number'>&nbsp;</span>
         <span *ngFor="let mark of nutMarkings[inversionShape.key]" class="nut-marking">
           {{ mark }}
         </span>
       </div>
 
       <div *ngFor="let fret of inversionShape.value | keyvalue: numeric" class='frets fret-{{ fret.key }}'>
+        <span class='fret-number'>{{ (['3', '5', '7', '9', '12', '15', '17', '19', '24'].includes(fret.key)) ? fret.key : '&nbsp;' }}</span>
         <span *ngFor="let finger  of fret.value" class="string">
           <span *ngIf="finger" class="finger finger-{{finger}}">{{ finger }}</span>
         </span>

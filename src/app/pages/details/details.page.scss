@@ -42,6 +42,7 @@
     }
 
     .frets {
+        position: relative;
         display: block;
         margin: 0;
         padding: 0;
@@ -52,6 +53,16 @@
     // Undo all but the first border-top:
     .frets~.frets {
         border-top: none;
+    }
+
+    .fret-number {
+        background: white;
+        display: inline-block;
+        position: absolute;
+        top: 0.6em;
+        width: 2em;
+        height: 2em;
+        left: -2em;
     }
 
     .string {
@@ -79,7 +90,6 @@
         vertical-align: middle;
         border: 1px solid white;
         color: white;
-        background-color: blue;
         border-radius: 50%;
         padding: 0.3em;
         text-align: center;
