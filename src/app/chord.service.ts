@@ -183,10 +183,11 @@ export class ChordService {
 
       // No small boxes:
       // Adds an empty fret before:
-      if (inversionName2firstFrettedStringFingering[inversionName] > 1
-        && lastFret - inversionName2firstFrettedStringFingering[inversionName] < 2
+      let firstFret = inversionName2firstFrettedStringFingering[inversionName];
+      console.log(firstFret, lastFret - firstFret);
+      if (// firstFret > 1 &&
+        (lastFret - firstFret < 4)
       ) {
-        let firstFret = inversionName2firstFrettedStringFingering[inversionName];
         for (let fretToAdd = inversionName2firstFrettedStringFingering[inversionName] - 1; fretToAdd > inversionName2firstFrettedStringFingering[inversionName] - 2 && fretToAdd > 0; fretToAdd--) {
           firstFret = fretToAdd;
           shapesForInversions[inversionName][fretToAdd] = Array(numberOfStrings).fill('');
