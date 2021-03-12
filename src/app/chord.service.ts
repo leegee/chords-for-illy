@@ -181,7 +181,7 @@ export class ChordService {
       // No small boxes:
       // Adds an empty fret before:
       let firstFret = inversionName2firstFrettedStringFingering[inversionName];
-      if (// firstFret > 1 &&
+      if (firstFret < 5 &&
         (lastFret - firstFret < 4)
       ) {
         for (let fretToAdd = inversionName2firstFrettedStringFingering[inversionName] - 1; fretToAdd > inversionName2firstFrettedStringFingering[inversionName] - 2 && fretToAdd > 0; fretToAdd--) {
