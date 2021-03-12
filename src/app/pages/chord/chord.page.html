@@ -11,7 +11,7 @@
 <ion-content class="centered">
 
   <section class='chord-box' routerLink="/inversion/{{ instrument }}/{{ tuning }}/{{ note }}/{{ type }}/{{ inversionShape.key }}" routerDirection="forward"
-    *ngFor="let inversionShape of shapesForInversions | keyvalue">
+    *ngFor="let inversionShape of shapesForInversions | keyvalue: chordOrder">
 
     <h2> {{ inversionShape.key }} </h2>
 

@@ -54,4 +54,8 @@ export class ChordPage implements OnInit {
   numeric = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
     return Number(a.key) > Number(b.key) ? 1 : (Number(b.key) > Number(a.key) ? -1 : 0);
   }
+
+  chordOrder = (a: KeyValue<string, string[]>, b: KeyValue<string, string[]>): number => {
+    return Number(a.value.findIndex(_ => _ !== undefined)) > Number(b.value.findIndex(_ => _ !== undefined)) ? 1 : (Number(b.value.findIndex(_ => _ !== undefined)) > Number(a.value.findIndex(_ => _ !== undefined)) ? -1 : 0);
+  }
 }
