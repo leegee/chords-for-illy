@@ -41,7 +41,7 @@
 }
 
 .circle-container-desktop {
-  @include on-circle($item-count : 12, $circle-size: 40vmax, $item-size: 8rem);
+  @include on-circle($item-count : 12, $circle-size: 40vmax, $item-size: 6rem);
 }
 
 .circle-container {
