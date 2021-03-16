@@ -77,7 +77,7 @@ export class ChordService {
     const newFret2finger = [];
     const fingersInChord = {};
     let fingersOver12fret = 0;
-    let rv;
+    let rv: Array<{ [x: string]: {}; }>;
 
     template.frets2strings.forEach(fret2finger => {
       const fret = Object.keys(fret2finger)[0];
@@ -202,6 +202,59 @@ export class ChordService {
         shapesForInversions[inversionName][0] = Array(numberOfStrings).fill('');
       }
     });
+
+    // const barre: Array<string[]> = [];
+
+    /*
+    Object.keys(shapesForInversions).forEach(inversionShapeKey => {
+
+      // Maybe add barres: inelegant, to say the least.
+      Object.values(shapesForInversions[inversionShapeKey]).forEach((stringsAtFret: []) => {
+
+        // Identify barre - ie more than one string fretted by a finger
+        const fingerCount: number[] = [];
+        stringsAtFret.forEach((fingerOnString) => {
+          if (typeof fingerOnString === "number") {
+            fingerCount[fingerOnString] = fingerCount[fingerOnString] ? fingerCount[fingerOnString] + 1 : 1;
+          }
+        });
+
+        // Add barre classes
+        fingerCount.filter(_ => _ > 1).forEach(fretNumber => {
+          let fingersFrettingCount = 0;
+          let firstStringForBarre;
+          let lastStringForBarre;
+          let barreFinger;
+
+          stringsAtFret.forEach((fingerOnString, stringNumber) => {
+            if (typeof fingerOnString === "number") {
+              if (++fingersFrettingCount === 1) {
+                barre[fretNumber] = [];
+                barre[fretNumber][stringNumber] = 'start';
+                firstStringForBarre = stringNumber;
+                barreFinger = fingerOnString;
+              } else if (fingerOnString === barreFinger) {
+                barre[fretNumber][stringNumber] = 'mid';
+                lastStringForBarre = stringNumber;
+              }
+            }
+          });
+
+          barre[fretNumber][lastStringForBarre] = 'end';
+
+          // Add indicators for fingers missing in chord box data:
+          stringsAtFret.forEach((fingerOnString, stringNumber) => {
+            if (stringNumber > firstStringForBarre && stringNumber < lastStringForBarre) {
+              stringsAtFret[stringNumber] = stringsAtFret[stringNumber] || barreFinger;
+              barre[fretNumber][stringNumber] = 'mid';
+            }
+          });
+
+        }); // Next finger
+      }); // Next string
+    }); // Next inversion
+
+    */
 
     return [shapesForInversions, inversionName2firstFrettedStringFingering, nutMarkings];
   }
