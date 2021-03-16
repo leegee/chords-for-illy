@@ -19,6 +19,7 @@ export class DetailsPage implements OnInit {
   shapesForInversions = {};
   inversion: string;
   inversionShape = {};
+  barre: Array<string[]> = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -50,7 +51,57 @@ export class DetailsPage implements OnInit {
     [this.shapesForInversions, this.inversionName2firstFrettedStringFingering, this.nutMarkings] =
       this.chordService.makeInversions(this.instrument, this.tuning, this.note, this.type, chordDbFrag, this.inversion);
 
-    this.inversionShape = this.shapesForInversions;
+    // TODO Loop
+    const inversionShapeKey = Object.keys(this.shapesForInversions)[0];
+
+    // Maybe add barres: inelegant, to say the least.
+    Object.values(this.shapesForInversions[inversionShapeKey]).forEach((stringsAtFret: []) => {
+
+      // Identify barre - ie more than one string fretted by a finger
+      const fingerCount: number[] = [];
+      stringsAtFret.forEach((fingerOnString) => {
+        if (typeof fingerOnString === "number") {
+          fingerCount[fingerOnString] = fingerCount[fingerOnString] ? fingerCount[fingerOnString] + 1 : 1;
+        }
+      });
+
+      // Add barre classes
+      fingerCount.filter(_ => _ > 1).forEach(fretNumber => {
+        let fingersFrettingCount = 0;
+        let firstStringForBarre;
+        let lastStringForBarre;
+        let barreFinger;
+
+        stringsAtFret.forEach((fingerOnString, stringNumber) => {
+          if (typeof fingerOnString === "number") {
+            if (++fingersFrettingCount === 1) {
+              this.barre[fretNumber] = [];
+              this.barre[fretNumber][stringNumber] = 'start';
+              firstStringForBarre = stringNumber;
+              barreFinger = fingerOnString;
+            } else if (fingerOnString === barreFinger) {
+              this.barre[fretNumber][stringNumber] = 'mid';
+              lastStringForBarre = stringNumber;
+            }
+          }
+        });
+
+        this.barre[fretNumber][lastStringForBarre] = 'end';
+
+        // Add indicators for fingers missing in chord box data:
+        stringsAtFret.forEach((fingerOnString, stringNumber) => {
+          if (stringNumber > firstStringForBarre && stringNumber < lastStringForBarre) {
+            stringsAtFret[stringNumber] = stringsAtFret[stringNumber] || barreFinger;
+            this.barre[fretNumber][stringNumber] = 'mid';
+            console.log('>', fingerOnString || '-', barreFinger, 'string', stringNumber);
+          }
+        });
+
+        console.log(this.barre);
+
+      }); // Next finger
+
+    }); // Next string
   }
 
   numeric = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {

@@ -27,8 +27,9 @@
 
       <div *ngFor="let fret of inversionShape.value | keyvalue: numeric" class='frets fret-{{ fret.key }}'>
         <span class='fret-number'>{{ (['3', '5', '7', '9', '12', '15', '17', '19', '24'].includes(fret.key)) ? fret.key : '&nbsp;' }}</span>
-        <span *ngFor="let finger  of fret.value" class="string">
-          <span *ngIf="finger" class="finger finger-{{finger}}">{{ finger }}</span>
+        <span *ngFor="let finger of fret.value, index as i" class="string">
+          <span *ngIf="finger" class="finger finger-{{ finger }} {{ barre[fret.key] && barre[fret.key][i] ? 'barre-'+barre[fret.key][i] : '' }}">{{ finger
+            }}</span>
         </span>
       </div>
     </div>
