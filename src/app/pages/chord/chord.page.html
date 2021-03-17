@@ -13,7 +13,7 @@
   <section class='chord-box' routerLink="/inversion/{{ instrument }}/{{ tuning }}/{{ note }}/{{ type }}/{{ inversionShape.key }}" routerDirection="forward"
     *ngFor="let inversionShape of shapesForInversions | keyvalue: chordOrder">
 
-    <h2> {{ inversionShape.key }} </h2>
+    <h2><span> {{ inversionShape.key }} </span></h2>
 
     <div class="fretboard">
 

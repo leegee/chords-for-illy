@@ -18,8 +18,6 @@ export class ChordPage implements OnInit {
   nutMarkings = {};
   shapesForInversions = {};
 
-
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private chordService: ChordService

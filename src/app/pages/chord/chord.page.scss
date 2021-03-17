@@ -4,12 +4,20 @@
     font-size: 4pt;
     margin: 0 0 4em 4em;
     float: left;
-    min-height: 125px;
-    width: 25vw;
+    min-height: 25vh;
+    max-width: 30vw;
 
     h2 {
         font-size: 1rem;
         margin-bottom: 4pt;
+        height: 3rem;
+        width: 10vw;
+        position: relative;
+    }
+
+    h2 span {
+        position: absolute;
+        bottom: 0;
     }
 
     .first-fret-label {

@@ -3,8 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChordPage } from './chord.page';
 
-import chordDb from '../../../chords-open.json';
-import { TabsPageModule } from 'src/app/tabs/tabs.module';
 import { ActivatedRoute } from '@angular/router';
 
 const fixtureData = {
@@ -56,19 +54,11 @@ describe('ChordPage', () => {
       const url = `chord/guitar/standard/${fixtureData.note}/${fixtureData.type}`;
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        expect(component.numberOfStrings).toBe(6);
+        expect(component.tuning).toBe('standard');
+        expect(component.note).toBe(fixtureData.note);
+        expect(component.type).toBe(fixtureData.type);
       });
     });
-  });
-
-
-  it('should compute chords', () => {
-    const chordDbFrag = component.computeChords(
-      chordDb.guitar.standard.A.major, 'major'
-    );
-
-    // tslint:disable
-    // console.log(JSON.stringify( chordDbFrag, {}, 4 ));
   });
 
 });
